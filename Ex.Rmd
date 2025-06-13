@@ -48,26 +48,26 @@ class: middle, center, inverse
 
 class: middle
 
-# Agenda: Part 1 - Statistics & Measures
+# Agenda: Full Lecture Overview
 
 .pull-left[
-**Session Overview:**
-1. **Introduction to EBM** - 5 min
-2. **Basic Statistical Terms** - 10 min  
-3. **Accuracy vs Precision** - 5 min
-4. **Statistical Inference** - 15 min
-5. **Hypothesis Testing** - 15 min
-6. **Clinical Metrics** - 20 min
-7. **Important Caveats** - 10 min
+**Part 1: Statistics & Measures (Approx. 30 minutes)**
+1.  **Introduction to EBM** - 2 minutes
+2.  **Basic Statistical Terms** - 5 minutes
+3.  **Accuracy versus Precision** - 2 minutes
+4.  **Statistical Inference & Distributions** - 6 minutes
+5.  **Hypothesis Testing** - 5 minutes
+6.  **Common Clinical/Epidemiological Metrics** - 8 minutes
+7.  **Important Caveats** - 2 minutes
 ]
 
 .pull-right[
-**Part 2 Preview:**
-1. **Key Concepts Review** - 5 min
-2. **Types of Biases** - 15 min
-3. **Study Designs** - 25 min
-4. **Study Limitations** - 15 min
-5. **Q&A** - 5 min
+**Part 2: Study Designs & Biases (Approx. 30 minutes)**
+1.  **Review of Key Concepts** - 2 minutes
+2.  **Types of Biases** - 8 minutes
+3.  **Overview of Study Types** - 12 minutes
+4.  **Limitations of Each Study Type** - 6 minutes
+5.  **Conclusion & Q&A** - 2 minutes
 ]
 
 ---
