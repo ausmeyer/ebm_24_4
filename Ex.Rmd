@@ -80,25 +80,6 @@ class: middle, center
 
 class: middle
 
-# Generalizability (External Validity)
-
-.pull-left[
-**Definition:** How applicable are findings from a study sample to the broader population?
-
-**Key Question:** Can you apply these results to YOUR patients in YOUR clinical setting?
-]
-
-.pull-right[
-**Clinical Example:**
-- Study: New asthma medication tested in highly controlled, homogeneous population
-- Your patients: Diverse demographics, varying comorbidities, different severities
-- **Question:** Are the findings generalizable?
-]
-
----
-
-class: middle
-
 # P-value: What It Actually Means
 
 .pull-left[
