@@ -357,6 +357,39 @@ class: middle
 A. mean, median, mode  
 B. mode, mean, median  
 C. median, mode, mean  
+D. mode, median, mean  
+E. mean, mode, median
+
+**Remember:** Tail direction = skew direction
+]
+
+.pull-right[
+```{r quiz-plot1, out.width="100%", fig.asp=0.8}
+r.skew <- rchisq(100000, df = 5)
+ggplot(data.frame(data = r.skew), aes(data)) +
+  geom_histogram(binwidth = 0.4, fill = 'lightgray', color = 'black', alpha = 0.7) + 
+  geom_vline(xintercept = mean(r.skew), linetype = 'dotted', size = 1.2, color = 'darkblue') +
+  geom_vline(xintercept = median(r.skew), linetype = "dashed", size = 1.2, color = 'darkgreen') +
+  geom_vline(xintercept = Mode(round(r.skew, digits = 2)), linetype = "solid", size = 1.2, color = 'darkred') +
+  xlim(0, 25) + 
+  ylim(0, 7000) +
+  theme_minimal(base_size = 14) +
+  labs(x="", y="")
+```
+]
+
+---
+
+class: middle
+
+# Quick Quiz: Skewed Distribution
+
+.pull-left[
+**Which order (left to right) for Right Skewed?**
+
+A. mean, median, mode  
+B. mode, mean, median  
+C. median, mode, mean  
 D. **mode, median, mean**  
 E. mean, mode, median
 
@@ -364,7 +397,7 @@ E. mean, mode, median
 ]
 
 .pull-right[
-```{r quiz-plot, out.width="100%", fig.asp=0.8}
+```{r quiz-plot2, out.width="100%", fig.asp=0.8}
 r.skew <- rchisq(100000, df = 5)
 ggplot(data.frame(data = r.skew), aes(data)) +
   geom_histogram(binwidth = 0.4, fill = 'lightgray', color = 'black', alpha = 0.7) + 
