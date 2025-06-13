@@ -1,35 +1,36 @@
----
-title: "Evidence-Based Medicine - Part 4"
-subtitle: "Quality Improvement, Patient Safety & Applying EBM in Pediatric Practice"
-author: "Austin Meyer, MD, PhD, MPH, MS, FAAP, etc."
-date: "November 15, 2024"
-output: 
-  xaringan::moon_reader:
-    lib_dir: libs
-    css: ["xaringan-themer.css"]
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlide: true
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Evidence-Based Medicine - Part 4</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Austin Meyer, MD, PhD, MPH, MS, FAAP, etc." />
+    <meta name="date" content="2024-11-15" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Evidence-Based Medicine - Part 4
+]
+.subtitle[
+## Quality Improvement, Patient Safety &amp; Applying EBM in Pediatric Practice
+]
+.author[
+### Austin Meyer, MD, PhD, MPH, MS, FAAP, etc.
+]
+.date[
+### November 15, 2024
+]
+
 ---
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(
-  fig.width=9, 
-  fig.height=3.5, 
-  fig.retina=3,
-  out.width = "100%",
-  cache = FALSE,
-  echo = FALSE,
-  message = FALSE, 
-  warning = FALSE,
-  hiline = TRUE
-)
-library(ggplot2)
-library(knitr)
-library(kableExtra)
-```
+
+
 
 # Learning Objectives
 
@@ -81,10 +82,7 @@ class: inverse, center, middle
 ]
 
 .pull-right[
-```{r pediatric-safety-stats, fig.height=4}
-# Google Search Prompt: "pediatric vs adult medical error rates bar chart infographic"
-##knitr::include_graphics("figs/pediatric-vs-adult-errors.png")
-```
+&lt;img src="figs/med_err.jpg" width="100%" /&gt;
 ]
 
 .footnote[
@@ -109,10 +107,7 @@ Institute of Medicine report; Principles of Pediatric Patient Safety, Pediatrics
 ]
 
 .pull-right[
-```{r medication-errors, fig.height=4}
-# Google Search Prompt: "medication use process flowchart prescribing dispensing administration"
-##knitr::include_graphics("figs/medication-process-flowchart.png")
-```
+&lt;img src="figs/med_err_by_age.jpg" width="100%" /&gt;
 ]
 
 .footnote[
@@ -153,19 +148,43 @@ Joint Commission Sentinel Event Alert; Safe handoff practices, Anales de Pediatr
 
 # The Cost of Poor Quality
 
-```{r cost-table}
-cost_data <- data.frame(
-  "Quality Issue" = c("PICU Readmission", "Pediatric HA-BSI", "PICU Nosocomial Infection", "Congenital Malformation Readmission"),
-  "Key Cost Metric" = c("Mean total hospital costs", "Attributable healthcare cost", "Median additional cost", "Average readmission cost"),
-  "Value (USD/EUR)" = c("$40,261 vs $22,735", "$1,642 - $160,804", "€30,791.4", "$26,300"),
-  "Impact" = c("77% higher for readmitted", "Wide variation by case", "8x higher PICU LOS", "Highest by condition type")
-)
-
-kable(cost_data, 
-      caption = "Financial Impact of Quality Issues in Pediatrics",
-      format = "html") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
-```
+&lt;table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Financial Impact of Quality Issues in Pediatrics&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Quality.Issue &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Key.Cost.Metric &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Value..USD.EUR. &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Impact &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; PICU Readmission &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Mean total hospital costs &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; $40,261 vs $22,735 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 77% higher for readmitted &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Pediatric HA-BSI &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Attributable healthcare cost &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; $1,642 - $160,804 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Wide variation by case &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; PICU Nosocomial Infection &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Median additional cost &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; €30,791.4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8x higher PICU LOS &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Congenital Malformation Readmission &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Average readmission cost &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; $26,300 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Highest by condition type &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 #### Key Takeaways
 - Readmissions cost **12.4% more** than index admissions.
@@ -181,19 +200,48 @@ Various HCUP Statistical Briefs and cost studies cited in research document
 
 # QI vs. Research: Key Distinctions
 
-```{r qi-vs-research-table}
-comparison_data <- data.frame(
-  Feature = c("Primary Aim", "Key Question", "Methodology", "Generalizability", "Ethical Oversight", "Timeline"),
-  `Quality Improvement` = c("Improve local system", "How can we improve this HERE?", "PDSA, Lean, known best practices", "Local context only", "May not require IRB", "Rapid, iterative"),
-  Research = c("Generate new knowledge", "What is the effect of X on Y?", "Scientific method, hypothesis-driven", "Designed for broad application", "Requires IRB approval", "Often lengthy")
-)
-
-kable(comparison_data, 
-      caption = "QI vs. Research: Critical Distinctions",
-      format = "html",
-      col.names = c("Feature", "Quality Improvement", "Research")) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
-```
+&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;QI vs. Research: Critical Distinctions&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Feature &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Quality Improvement &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Research &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Primary Aim &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Improve local system &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Generate new knowledge &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Key Question &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; How can we improve this HERE? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; What is the effect of X on Y? &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Methodology &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; PDSA, Lean, known best practices &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Scientific method, hypothesis-driven &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Generalizability &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Local context only &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Designed for broad application &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ethical Oversight &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; May not require IRB &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Requires IRB approval &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Timeline &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rapid, iterative &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Often lengthy &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 #### When to Use Each Approach
 - **QI**: To apply known best practices in your local setting.
@@ -215,10 +263,7 @@ class: inverse, center, middle
 # The PDSA Cycle
 
 .pull-left[
-```{r pdsa-cycle, out.width="90%"}
-# Google Search Prompt: "PDSA cycle diagram simple 4 quadrants"
-##knitr::include_graphics("figs/pdsa-cycle-diagram.png")
-```
+&lt;img src="figs/pdsa.png" width="70%" /&gt;
 ]
 
 .pull-right[
@@ -253,7 +298,7 @@ Adoption of PDSA Cycles in Healthcare: A Systematic Review
 
 --
 
-#### PDSA Cycle 1: Assessment & Education
+#### PDSA Cycle 1: Assessment &amp; Education
 - **Plan/Do**: Survey staff on care practices.
 - **Study/Act**: Found only **8.8%** compliance → Created educational flyers.
 
@@ -266,7 +311,7 @@ Adoption of PDSA Cycles in Healthcare: A Systematic Review
 --
 
 #### PDSA Cycle 3: Hardwiring the Change
-- **Plan/Do**: Modified CAUTI bundle checklist & started targeted rounding.
+- **Plan/Do**: Modified CAUTI bundle checklist &amp; started targeted rounding.
 - **Study**: Achieved **100%** compliance with soap/water use.
 - **Act**: **Zero CAUTIs** reported in the year following the intervention.
 
@@ -278,28 +323,9 @@ Reducing Catheter-Associated Urinary Tract Infections, UMSL Dissertation 2022
 
 # PDSA Success: Vaccination Rates
 
-```{r vaccination-pdsa, fig.height=4}
-# Data for Growth Chart Plotting Improvement
-growth_data <- data.frame(
-  Session = factor(c("Baseline", "Post-Training", "Post-Supervision", "Sustained"), 
-                   levels = c("Baseline", "Post-Training", "Post-Supervision", "Sustained")),
-  Coverage = c(31, 65, 85, 92)
-)
+&lt;img src="Ex_files/figure-html/vaccination-pdsa-1.png" width="100%" /&gt;
 
-ggplot(growth_data, aes(x = Session, y = Coverage, group = 1)) +
-  geom_line(color = "#43418A", size = 1.5) +
-  geom_point(color = "#43418A", size = 4) +
-  geom_hline(yintercept = 90, linetype = "dashed", color = "darkgreen") +
-  ylim(0, 100) +
-  labs(title = "Improving Growth Chart Plotting via PDSA Cycles",
-       subtitle = "Coverage increased from 31% to over 90%",
-       x = "PDSA Intervention Stage",
-       y = "Growth Chart Plotting Coverage (%)") +
-  theme_minimal(base_size = 14) +
-  annotate("text", x = 3.5, y = 95, label = "Goal: >90%", color = "darkgreen")
-```
-
-#### Adolescent Well-Visits & Immunizations
+#### Adolescent Well-Visits &amp; Immunizations
 - **Setting**: 12 pediatric primary care practices.
 - **Interventions**: EHR optimization, recall systems, staff education.
 - **Result**: Statistically significant increase in well-visits (p=0.04).
@@ -339,10 +365,7 @@ class: inverse, center, middle
 ]
 
 .pull-right[
-```{r lean-principles, out.width="100%"}
-# Google Search Prompt: "lean management house diagram healthcare"
-#knitr::include_graphics("figs/lean-house-healthcare.png")
-```
+
 ]
 
 .footnote[
@@ -411,31 +434,13 @@ Lean-Based Approach to Improve Emergency Department Throughput, PMC 2024
 
 ---
 
-# Lean Success: Pediatric A&E Stockholm
+# Lean Success: Pediatric A&amp;E Stockholm
 
-```{r stockholm-results, fig.height=4}
-# Data for Stockholm A&E improvements
-stockholm_data <- data.frame(
-  Metric = c("Time to MD (min)", "Time to MD (min)", "% Seen < 4 hrs", "% Seen < 4 hrs"),
-  Period = factor(c("Before", "After"), levels = c("Before", "After")),
-  Value = c(67, 51, 67, 80)
-)
-
-ggplot(stockholm_data, aes(x = Metric, y = Value, fill = Period)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  geom_text(aes(label = Value), position = position_dodge(width = 0.9), vjust = -0.5) +
-  scale_fill_manual(values = c("Before" = "#D9D9E7", "After" = "#43418A")) +
-  labs(title = "Pediatric A&E Improvements After Lean Implementation",
-       subtitle = "Improvements achieved despite a 9% increase in patient volume",
-       x = "Key Performance Metric",
-       y = "Value") +
-  theme_minimal(base_size = 14) +
-  theme(legend.title = element_blank())
-```
+&lt;img src="Ex_files/figure-html/stockholm-results-1.png" width="100%" /&gt;
 
 #### Key Interventions
-- Multi-professional care teams & redesigned workspace.
-- Centralized flow managers & visual "takt board".
+- Multi-professional care teams &amp; redesigned workspace.
+- Centralized flow managers &amp; visual "takt board".
 - Increased senior physician involvement in flow.
 
 .footnote[
@@ -453,27 +458,26 @@ class: inverse, center, middle
 
 # Understanding Quality Measures
 
+.pull-left[
 #### The Donabedian Model
 
-```{r donabedian-model, out.width="80%"}
-# Google Search Prompt: "Donabedian model structure process outcome simple diagram"
-#knitr::include_graphics("figs/donabedian-model.png")
-```
+&lt;img src="figs/don.jpg" width="100%" /&gt;
+]
 
 --
 
+.pull-right[
 #### Types of Measures
 - **Structure**: The "what" - EHRs, staffing, equipment.
 - **Process**: The "how" - Actions taken, adherence to protocols.
 - **Outcome**: The "result" - Impact on patient health (mortality, readmissions).
 
---
-
 #### Why Process Measures Matter
-> *"Every system is perfectly designed to get the results it gets."* - Dr. Paul Batalden
+&gt; *"Every system is perfectly designed to get the results it gets."* - Dr. Paul Batalden
 
 - They are **actionable** and reveal **root causes** of poor outcomes.
 - They help reduce **undesirable variation** in care.
+]
 
 .footnote[
 Understanding and Measuring Clinical Outcomes, Simbo.ai; Process vs Outcome Measures, Health Catalyst
@@ -483,28 +487,38 @@ Understanding and Measuring Clinical Outcomes, Simbo.ai; Process vs Outcome Meas
 
 # Pediatric Examples: Process vs. Outcome
 
-```{r process-outcome-examples}
-examples_data <- data.frame(
-  Type = c("Process", "Process", "Outcome", "Outcome"),
-  `Pediatric Example` = c(
-    "% children receiving recommended vaccines by 24 months",
-    "% adolescents with an annual well-child visit",
-    "30-day readmission rate for pediatric asthma",
-    "Surgical site infection rate post-appendectomy"
-  ),
-  Focus = c(
-    "Measures adherence to best practice",
-    "Indicates delivery of preventive care",
-    "Reflects overall effectiveness of care",
-    "Shows direct impact on patient health"
-  )
-)
-
-kable(examples_data, 
-      caption = "Process vs. Outcome Measures in Pediatric Care",
-      format = "html") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
-```
+&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Process vs. Outcome Measures in Pediatric Care&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Type &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Pediatric.Example &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Focus &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Process &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; % children receiving recommended vaccines by 24 months &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Measures adherence to best practice &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Process &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; % adolescents with an annual well-child visit &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Indicates delivery of preventive care &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Outcome &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 30-day readmission rate for pediatric asthma &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Reflects overall effectiveness of care &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Outcome &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Surgical site infection rate post-appendectomy &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Shows direct impact on patient health &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 #### Key Insight
 - A focus on **process measures** helps identify system issues and avoids a culture of individual blame when outcomes are poor.
@@ -525,8 +539,7 @@ Understanding and Measuring Clinical Outcomes; Process vs Outcome Measures
 #### Example: Reducing ED Length of Stay
 - **Primary Measure**: Time from arrival to discharge.
 - **Balancing Measures**:
-  - 30-day readmission rate (Are we discharging too soon?)
-  - Staff satisfaction/burnout (Is the new process too stressful?)
+  - 30-day readmission rate, Staff satisfaction/burnout, etc
 ]
 
 .pull-right[
@@ -555,23 +568,17 @@ How-to Guide for Measurement, NHS England; Improving Pediatric Resident Safety E
 - **Looks for**: Non-random signals of change (shifts, trends).
 - **Answers**: "Is something changing?"
 
-```{r run-chart-example, out.width="100%", fig.height=2.5}
-# Google Search Prompt: "quality improvement run chart with shift"
-#knitr::include_graphics("figs/run-chart-example.png")
-```
+&lt;img src="Ex_files/figure-html/run-chart-example-1.png" width="70%" /&gt;
 ]
 
 .pull-right[
 #### SPC Charts
-- **What**: More robust chart with a **mean** and statistically-derived **control limits** (UCL/LCL).
-- **Use**: Mature projects, more data (≥12-20 points).
+- **What**: More robust chart with statistically-derived **control limits**.
+- **Use**: Mature projects, more data.
 - **Looks for**: Special cause variation (points outside limits, specific patterns).
 - **Answers**: "Is the change a real improvement and is the process stable?"
 
-```{r spc-example, out.width="100%", fig.height=2.5}
-# Google Search Prompt: "statistical process control chart spc example with intervention"
-#knitr::include_graphics("figs/spc-chart-example.png")
-```
+&lt;img src="Ex_files/figure-html/spc-chart-example-1.png" width="70%" /&gt;
 ]
 
 .footnote[
@@ -587,9 +594,7 @@ class: inverse, center, middle
 
 ---
 
-# Medication Dosing Errors: The Perfect Storm
-
-## Why Children Are at Higher Risk
+# Medication Dosing Errors
 
 .pull-left[
 #### Physiological Factors
@@ -600,21 +605,18 @@ class: inverse, center, middle
 #### System Factors  
 - **Complex calculations** (mg/kg)
 - **Decimal point errors** (10-fold risk)
-- **Unit confusion** (lbs vs. kg)
 - **Lack of pediatric formulations**
+
+
+#### Sobering Statistics
+- **1/3** of peds errors are "improper dose/quantity".
+- ADEs are **3x more frequent** in pediatric vs. adult patients.
+- **15%** of outpt scripts have dosing errors.
 ]
 
 .pull-right[
-```{r medication-error-factors}
-# Google Search Prompt: "fishbone diagram medication error causes healthcare"
-#knitr::include_graphics("figs/medication-error-fishbone.png")
-```
+&lt;img src="figs/fishbone.png" width="100%" /&gt;
 ]
-
-#### Sobering Statistics
-- **1/3** of pediatric errors are "improper dose/quantity".
-- ADEs are **3x more frequent** in pediatric vs. adult patients.
-- **15%** of outpatient peds prescriptions have potential dosing errors.
 
 .footnote[
 Methodological Challenges in Dosing Errors, NCBI; A Weighty Mistake, PSNet AHRQ
@@ -645,7 +647,6 @@ Methodological Challenges in Dosing Errors, NCBI; A Weighty Mistake, PSNet AHRQ
 - **Multiple safety barriers failed**.
 - **Technology** (the EMR) propagated the initial error.
 - **Human verification** and critical thinking remain essential.
-- **Family engagement** can be the final, crucial safety net.
 
 .footnote[
 A Weighty Mistake, PSNet AHRQ
@@ -655,21 +656,13 @@ A Weighty Mistake, PSNet AHRQ
 
 # Communication Failures: High-Stakes Handoffs
 
-### The Scope of the Problem
-- **30%** of malpractice claims involve communication failures.
-- Leads to **1,744 deaths** and **$1.7 billion** in costs over 5 years.
-
---
-
-### Pediatric-Specific Challenges
-
 .pull-left[
-##### Patient & Family
+#### Patient &amp; Family
 - Limited self-advocacy
 - Multiple caregivers
 - Language/cultural barriers
 
-##### System Factors
+#### System Factors
 - High patient volumes
 - Frequent handoffs
 - Fragmented care delivery
@@ -677,21 +670,24 @@ A Weighty Mistake, PSNet AHRQ
 ]
 
 .pull-right[
-```{r communication-challenges}
-# Google Search Prompt: "pediatric healthcare communication network diagram"
-#knitr::include_graphics("figs/peds-comm-network.png")
-```
-]
+#### The Scope of the Problem
+- **30%** of malpractice claims involve communication failures.
+- Leads to **1,744 deaths** and **$1.7 billion** in costs over 5 years.
 
 #### Common Incidents from Poor Handoffs
 - Diagnostic or procedural errors
 - Delayed communication of critical results
 - Omission of essential information
 - Medication reconciliation failures
+]
 
 .footnote[
 Joint Commission Sentinel Event Alert 58; Safe handoff practices, Anales de Pediatría 2023
 ]
+
+---
+
+<iframe src="figs/pediatric_communication_network.html" width="70%" height="600px" frameborder="0" scrolling="no" style="overflow: hidden; display: block; margin: 0 auto;"></iframe>
 
 ---
 
@@ -705,16 +701,14 @@ Joint Commission Sentinel Event Alert 58; Safe handoff practices, Anales de Pedi
 
 --
 
-### Common Diagnostic Errors in Pediatrics
-
 .pull-left[
-#### From Pediatrician Surveys
+#### Common Errors from Pediatrician Surveys
 - Viral vs. bacterial illness
 - Medication side-effects
 - Psychiatric disorders
 - Appendicitis
 
-#### From Malpractice Lit.
+#### Common Errors from Malpractice Lit.
 - Meningitis
 - Appendicitis
 - Pneumonia
@@ -722,10 +716,7 @@ Joint Commission Sentinel Event Alert 58; Safe handoff practices, Anales de Pedi
 ]
 
 .pull-right[
-```{r diagnostic-error-frequency}
-# Google Search Prompt: "bar chart frequency of diagnostic errors by physicians"
-#knitr::include_graphics("figs/diagnostic-error-frequency.png")
-```
+
 ]
 
 .footnote[
@@ -736,18 +727,38 @@ Errors of Diagnosis in Pediatric Practice, PMC 2010; Core Elements of Hospital D
 
 # Cognitive Biases in Diagnostic Errors
 
-```{r cognitive-biases-table}
-bias_data <- data.frame(
-  `Cognitive Bias` = c("Anchoring", "Premature Closure", "Availability", "Confirmation"),
-  Definition = c("Over-relying on initial info", "Accepting diagnosis too early", "Overestimating recent/common cases", "Seeking only confirming evidence"),
-  `Pediatric Example` = c("Sticking with 'seizures' despite cardiac clues", "Stopping workup after an initial impression", "Thinking 'viral URI' before considering Kawasaki", "Ignoring symptoms that don't fit the chosen diagnosis")
-)
-
-kable(bias_data, 
-      caption = "Common Cognitive Biases in Pediatric Diagnosis",
-      format = "html") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
-```
+&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Common Cognitive Biases in Pediatric Diagnosis&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Cognitive.Bias &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Definition &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Pediatric.Example &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Anchoring &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Over-relying on initial info &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sticking with 'seizures' despite cardiac clues &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Premature Closure &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Accepting diagnosis too early &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Stopping workup after an initial impression &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Availability &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Overestimating recent/common cases &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Thinking 'viral URI' before considering Kawasaki &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Confirmation &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Seeking only confirming evidence &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ignoring symptoms that don't fit the chosen diagnosis &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 #### Top Contributing Factors Reported by Pediatricians
 1. **Overly focused** on a single diagnosis (Cognitive)
@@ -801,7 +812,7 @@ Root Cause Analysis Explained, Tableau; Root Cause Analysis of Diagnostic Cases,
 --
 
 #### 2. Case Analysis
-- Find the case, Confirm error occurred, Triage (RCA vs. peer review), Convene multidisciplinary team (including clinicians involved & family).
+- Find the case, Confirm error occurred, Triage (RCA vs. peer review), Convene multidisciplinary team (including clinicians involved &amp; family).
 
 --
 
@@ -819,12 +830,7 @@ Root Cause Analysis of Diagnostic Cases, Leapfrog Group
 
 ---
 
-# The Fishbone Framework for Diagnostic Errors
-
-```{r fishbone-diagram, out.width="100%"}
-# Google Search Prompt: "fishbone diagram diagnostic error template healthcare"
-#knitr::include_graphics("figs/diagnostic-error-fishbone.png")
-```
+# The Fishbone Framework for Diagnostic Errors (1/2)
 
 ### Four Key Domains to Investigate
 
@@ -851,6 +857,16 @@ Root Cause Analysis of Diagnostic Cases, Leapfrog Group
 - EHR usability, Teamwork
 - Workload, distractions
 ]
+
+.footnote[
+Root Cause Analysis of Diagnostic Cases, Leapfrog Group
+]
+
+---
+
+# The Fishbone Framework for Diagnostic Errors (2/2)
+
+&lt;img src="figs/fishbone_diag.jpeg" width="70%" /&gt;
 
 .footnote[
 Root Cause Analysis of Diagnostic Cases, Leapfrog Group
@@ -921,24 +937,7 @@ Use of FMEA Methods in Pediatric Care, ResearchGate 2024
 
 # FMEA Impact: NICU CLABSI Reduction
 
-```{r clabsi-reduction, fig.height=4}
-# Data for CLABSI reduction
-clabsi_data <- data.frame(
-  Period = factor(c("Before FMEA", "After FMEA"), levels = c("Before FMEA", "After FMEA")),
-  Rate = c(2.6, 0.8)
-)
-
-ggplot(clabsi_data, aes(x = Period, y = Rate, fill = Period)) +
-  geom_bar(stat = "identity", width = 0.6) +
-  geom_text(aes(label = Rate), vjust = -0.5, size = 5) +
-  scale_fill_manual(values = c("Before FMEA" = "#D9D9E7", "After FMEA" = "#43418A")) +
-  labs(title = "NICU CLABSI Rate Reduction After HFMEA Process",
-       subtitle = "A 69% decrease in CLABSIs per 1000 line days",
-       x = "",
-       y = "CLABSIs per 1000 Line Days") +
-  theme_minimal(base_size = 14) +
-  theme(legend.position = "none")
-```
+&lt;img src="Ex_files/figure-html/clabsi-reduction-1.png" width="100%" /&gt;
 
 #### HFMEA Process
 - A multidisciplinary team identified 5 key failure modes, including contamination, improper documentation, and staff knowledge gaps.
@@ -959,12 +958,10 @@ class: inverse, center, middle
 
 # High-Reliability Organization Principles
 
-#### Definition
+#### Definition and Five Principles
 Organizations operating in **high-risk, high-complexity** environments that achieve **far fewer accidents** than expected.
 
 --
-
-#### The Five HRO Principles
 
 .pull-left[
 #### 1. Preoccupation with Failure
@@ -1024,19 +1021,38 @@ High Reliability, Lurie Children's; Becoming High Reliability, Cincinnati Childr
 
 # Just Culture vs. Blame Culture
 
-```{r just-culture-comparison}
-culture_data <- data.frame(
-  Aspect = c("Response to Error", "Focus", "Reporting", "Learning"),
-  `Blame Culture` = c("Punish individual", "Who is at fault?", "Discouraged by fear", "Limited / Missed"),
-  `Just Culture` = c("Analyze system factors", "How/why did it happen?", "Encouraged / Safe", "Maximized")
-)
-
-kable(culture_data, 
-      caption = "Blame Culture vs. Just Culture",
-      format = "html",
-      col.names = c("Aspect", "Blame Culture", "Just Culture")) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
-```
+&lt;table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Blame Culture vs. Just Culture&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Aspect &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Blame Culture &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Just Culture &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Response to Error &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Punish individual &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Analyze system factors &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Focus &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Who is at fault? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; How/why did it happen? &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Reporting &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Discouraged by fear &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Encouraged / Safe &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Learning &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Limited / Missed &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Maximized &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 #### A Just Culture...
 - Balances system design and individual accountability.
@@ -1050,43 +1066,7 @@ From a Blame Culture to a Just Culture, ResearchGate; Patient Safety in Just Cul
 
 ---
 
-# Safety Huddles and Checklists
-
-### Safety Huddles
-.pull-left[
-#### Purpose
-- **5-15 minute** proactive briefings.
-- Share info, coordinate care, anticipate risks.
-
-#### Key Attributes
-- Structured & Interdisciplinary
-- Time-bounded & Goal-oriented
-- **Proactively focused** on risk
-
-#### Standard Agenda
-1. Review yesterday's safety.
-2. Preview today's patients/risks.
-3. Note issues for follow-up.
-]
-
-.pull-right[
-```{r safety-huddle-structure}
-# Google Search Prompt: "daily safety huddle agenda visual"
-#knitr::include_graphics("figs/safety-huddle-agenda.png")
-```
-]
-
-#### Checklists
-- Huddles are a great place to review use of tools like the **Surgical Safety Checklist**.
-- They help reinforce compliance and identify barriers to effective use.
-
-.footnote[
-Daily Huddle Component Kit, AHRQ; Safety huddle concept analysis, PMC 2024
-]
-
----
-
-# Family Engagement in Safety
+# Family Engagement in Safety (1/2)
 
 #### Definition
 An active **partnership** between health professionals and families to collaboratively improve health, safety, and care delivery.
@@ -1096,8 +1076,19 @@ An active **partnership** between health professionals and families to collabora
 #### Core Concepts
 - **Collaboration**: A true working relationship.
 - **Communication**: Effective, two-way information exchange.
-- **Respect & Dignity**: Valuing the family's expertise and worth.
+- **Respect &amp; Dignity**: Valuing the family's expertise and worth.
 - **Information Sharing**: Providing complete, unbiased information.
+
+.footnote[
+Patient and Family Engagement Narrative Review, PMC 2016
+]
+
+---
+
+# Family Engagement in Safety (2/2)
+
+#### Definition
+An active **partnership** between health professionals and families to collaboratively improve health, safety, and care delivery.
 
 --
 
@@ -1122,108 +1113,144 @@ Patient and Family Engagement Narrative Review, PMC 2016
 
 class: inverse, center, middle
 
-# Section 3: Evidence-Based Practice Implementation
-## From Evidence to Practice
-
----
-
-# Systematic Reviews and Clinical Guidelines
-
-.pull-left[
-### Systematic Reviews & Meta-Analyses
-- **Highest level of evidence**.
-- Synthesize results from multiple studies.
-
-#### Quick Assessment
-- Was the search comprehensive?
-- Were study quality criteria clear?
-- Are results consistent across studies?
-- **Is it applicable to my patient?**
-
-#### Pediatric Examples
-- Febrile seizure management
-- Antibiotic duration for AOM
-]
-
-.pull-right[
-### Clinical Practice Guidelines
-- Developed by groups like the **AAP**.
-- Provide evidence-based recommendations.
-
-#### Quick Assessment (AGREE II)
-- Is the scope clear?
-- Were stakeholders involved?
-- Is it based on a systematic review?
-- **Can we adapt it to our local practice?**
-]
-
-```{r evidence-pyramid, out.width="60%", fig.align="center"}
-# Google Search Prompt: "evidence based medicine pyramid simple"
-#knitr::include_graphics("figs/ebm-pyramid.png")
-```
-
----
-
-# Overcoming Implementation Barriers
-
-```{r implementation-barriers}
-barrier_data <- data.frame(
-  Category = c("Individual", "Organizational", "Systemic"),
-  `Common Barriers` = c("Lack of time, Resistance to change, Knowledge gaps", "Lack of resources, Competing priorities, Poor leadership support", "EHR limitations, Fragmented care, Conflicting policies"),
-  `Potential Solutions` = c("Targeted education, Academic detailing, Identify champions", "Allocate resources, Align with strategic goals, Leadership engagement", "EHR optimization, Care coordination models, Policy alignment")
-)
-
-kable(barrier_data, 
-      caption = "Common Implementation Barriers and Solutions",
-      format = "html") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
-```
-
-#### Key Implementation Principles
-- **Engage stakeholders** (physicians, nurses, families) from the start.
-- **Pilot test** changes on a small scale (PDSA!).
-- **Measure adoption** and sustainability over time.
-
----
-
-# Technology and EBM Integration
-
-.pull-left[
-### Clinical Decision Support (CDS)
-- **Real-time** evidence at point of care.
-- **Reduces variation** in practice.
-- **Improves adherence** to guidelines.
-
-#### Pediatric CDS Examples
-- Weight-based drug dosing calculators
-- Immunization reminders and forecasting
-- Sepsis screening alerts
-- Jaundice management nomograms
-]
-
-.pull-right[
-### EHR-Based Interventions
-- **Order sets** for common conditions (e.g., asthma, DKA).
-- **Automated reminders** for preventive care.
-- **Dashboards** for tracking quality metrics.
-
-### Point-of-Care Resources
-- Mobile apps (UpToDate, Pedi-STAT)
-- Online databases (PubMed, Cochrane)
-- Clinical calculators (MDCalc)
-]
-
-```{r technology-integration, out.width="70%", fig.align="center"}
-# Google Search Prompt: "EHR clinical decision support integration diagram"
-#knitr::include_graphics("figs/ehr-cds-integration.png")
-```
-
----
-
-class: inverse, center, middle
-
 # Thank You
 
 ### Remember
 *"Every system is perfectly designed to get the results it gets."*  
 **- Dr. Paul Batalden**
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlide": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

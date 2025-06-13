@@ -18,23 +18,23 @@
  *  Version: 0.4.2
  *
  * ------------------------------------------------------- */
-@import url(https://fonts.googleapis.com/css?family=Open+Sans&display=swap);
-@import url(https://fonts.googleapis.com/css?family=Merriweather&display=swap);
-@import url(https://fonts.googleapis.com/css?family=Fira+Mono&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Cabin:600,600i&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&display=swap);
 
 
 :root {
   /* Fonts */
-  --text-font-family: 'Open Sans';
+  --text-font-family: 'Noto Sans';
   --text-font-is-google: 1;
   --text-font-family-fallback: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial;
   --text-font-base: sans-serif;
-  --header-font-family: Merriweather;
+  --header-font-family: Cabin;
   --header-font-is-google: 1;
   --header-font-family-fallback: Georgia, serif;
-  --code-font-family: 'Fira Mono';
+  --code-font-family: 'Source Code Pro';
   --code-font-is-google: 1;
-  --base-font-size: 18px;
+  --base-font-size: 16px;
   --text-font-size: 1rem;
   --code-font-size: 0.9rem;
   --code-inline-font-size: 1em;
@@ -60,11 +60,6 @@
   --base: #43418A;
   --white: #FFFFFF;
   --black: #272822;
-  --red: #f34213;
-  --purple: #3e2f5b;
-  --orange: #ff8811;
-  --green: #136f63;
-  --white: #FFFFFF;
 }
 
 html {
@@ -295,35 +290,5 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 }
 .bg-black {
   background-color: var(--black);
-}
-.red {
-  color: var(--red);
-}
-.bg-red {
-  background-color: var(--red);
-}
-.purple {
-  color: var(--purple);
-}
-.bg-purple {
-  background-color: var(--purple);
-}
-.orange {
-  color: var(--orange);
-}
-.bg-orange {
-  background-color: var(--orange);
-}
-.green {
-  color: var(--green);
-}
-.bg-green {
-  background-color: var(--green);
-}
-.white {
-  color: var(--white);
-}
-.bg-white {
-  background-color: var(--white);
 }
 

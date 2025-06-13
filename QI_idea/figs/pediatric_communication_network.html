@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pediatric Healthcare Communication Network</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Noto Sans', 'Cabin', sans-serif;
+            background: #fafafa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 5px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 1040px;
+            width: 100%;
+        }
+        
+        .svg-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .node-label {
+            font-size: 12px;
+            font-weight: 500;
+            text-anchor: middle;
+            fill: #333;
+        }
+        
+        .center-label {
+            font-size: 14px;
+            font-weight: 600;
+            fill: #333;
+        }
+        
+        .node-circle {
+            transition: filter 0.3s ease;
+        }
+        
+        .node-circle:hover {
+            filter: brightness(1.1);
+        }
+        
+        .communication-line {
+            transition: opacity 0.3s ease;
+        }
+        
+        .node-group:hover ~ .communication-line {
+            opacity: 0.3;
+        }
+        
+        .node-group:hover ~ .communication-line.connected {
+            opacity: 1;
+            stroke-width: 3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="svg-container">
+            <svg width="900" height="700" viewBox="70 50 780 720" id="networkSvg">
+                <!-- Title positioned just above the top of outermost circle -->
+                <text x="500" y="70" text-anchor="middle" font-size="24" font-weight="600" fill="#333">
+                    The Pediatric Communication Web
+                </text>
+                
+                <!-- Background circles for visual reference -->
+                <circle cx="500" cy="400" r="100" fill="none" stroke="#f0f0f0" stroke-width="1" stroke-dasharray="5,5"/>
+                <circle cx="500" cy="400" r="200" fill="none" stroke="#f0f0f0" stroke-width="1" stroke-dasharray="5,5"/>
+                <circle cx="500" cy="400" r="320" fill="none" stroke="#f0f0f0" stroke-width="1" stroke-dasharray="5,5"/>
+                
+                <!-- Legend positioned just below the bottom of outermost circle -->
+                <g id="legend" transform="translate(500, 740)">
+                    <!-- Primary Communication Legend -->
+                    <line x1="-160" y1="0" x2="-130" y2="0" stroke="#43418A" stroke-width="3"/>
+                    <text x="-125" y="5" font-size="14" fill="#666">Primary Communication</text>
+                    
+                    <!-- Secondary Communication Legend -->
+                    <line x1="40" y1="0" x2="70" y2="0" stroke="#888888" stroke-width="2" stroke-dasharray="8,4"/>
+                    <text x="75" y="5" font-size="14" fill="#666">Secondary / Infrequent Communication</text>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        class PediatricNetworkDiagram {
+            constructor() {
+                this.svg = document.getElementById('networkSvg');
+                this.centerX = 500;
+                this.centerY = 400;
+                
+                // Define nodes with their properties
+                this.nodes = {
+                    center: {
+                        id: 'child-patient',
+                        label: 'Child Patient',
+                        icon: '👶',
+                        x: this.centerX,
+                        y: this.centerY,
+                        radius: 25,
+                        color: '#98D7C2'
+                    },
+                    layer1: [
+                        {
+                            id: 'parents-family',
+                            label: 'Parents / Family',
+                            icon: '👨‍👩‍👧‍👦',
+                            radius: 22,
+                            color: '#E8F4FD'
+                        },
+                        {
+                            id: 'pcp',
+                            label: 'Primary Care\nPhysician (PCP)',
+                            icon: '🩺',
+                            radius: 22,
+                            color: '#E8F4FD'
+                        }
+                    ],
+                    layer2: [
+                        {
+                            id: 'specialist',
+                            label: 'Specialist(s)',
+                            icon: '❤️',
+                            radius: 18,
+                            color: '#F0F0F8'
+                        },
+                        {
+                            id: 'pharmacist',
+                            label: 'Pharmacist',
+                            icon: '💊',
+                            radius: 18,
+                            color: '#F0F0F8'
+                        },
+                        {
+                            id: 'therapists',
+                            label: 'Therapists\n(PT/OT/Speech)',
+                            icon: '🏃‍♂️',
+                            radius: 18,
+                            color: '#F0F0F8'
+                        },
+                        {
+                            id: 'emergency',
+                            label: 'Emergency\nDepartment',
+                            icon: '🚑',
+                            radius: 18,
+                            color: '#F0F0F8'
+                        }
+                    ],
+                    layer3: [
+                        {
+                            id: 'school',
+                            label: 'School Nurse /\nTeacher',
+                            icon: '🏫',
+                            radius: 16,
+                            color: '#F8F8F8'
+                        },
+                        {
+                            id: 'inpatient',
+                            label: 'Inpatient\nHospital Team',
+                            icon: '🏥',
+                            radius: 16,
+                            color: '#F8F8F8'
+                        },
+                        {
+                            id: 'insurance',
+                            label: 'Insurance /\nPayer',
+                            icon: '💰',
+                            radius: 16,
+                            color: '#F8F8F8'
+                        }
+                    ]
+                };
+                
+                // Define communication connections
+                this.connections = {
+                    primary: [
+                        ['child-patient', 'parents-family'],
+                        ['parents-family', 'pcp'],
+                        ['pcp', 'specialist'],
+                        ['pcp', 'pharmacist'],
+                        ['inpatient', 'pcp']
+                    ],
+                    secondary: [
+                        ['parents-family', 'school'],
+                        ['parents-family', 'specialist'],
+                        ['pcp', 'school'],
+                        ['specialist', 'pharmacist'],
+                        ['emergency', 'pcp'],
+                        ['therapists', 'pcp'],
+                        ['therapists', 'school'],
+                        ['parents-family', 'insurance']
+                    ]
+                };
+                
+                this.nodePositions = new Map();
+                this.init();
+            }
+            
+            calculatePositions() {
+                // Center node
+                this.nodePositions.set('child-patient', {
+                    x: this.centerX,
+                    y: this.centerY
+                });
+                
+                // Layer 1 - Family Core (expanded to 100px radius circle)
+                const layer1Radius = 100;
+                const layer1Angles = [Math.PI * 1.3, Math.PI * 1.7]; // Left and right positions
+                
+                this.nodePositions.set('parents-family', {
+                    x: this.centerX + Math.cos(layer1Angles[0]) * layer1Radius,
+                    y: this.centerY + Math.sin(layer1Angles[0]) * layer1Radius
+                });
+                this.nodePositions.set('pcp', {
+                    x: this.centerX + Math.cos(layer1Angles[1]) * layer1Radius,
+                    y: this.centerY + Math.sin(layer1Angles[1]) * layer1Radius
+                });
+                
+                // Layer 2 - Specialty Care (expanded to 200px radius circle)
+                const layer2Radius = 200;
+                const layer2Angles = [
+                    Math.PI * 0.1,   // Right
+                    Math.PI * 0.6,   // Bottom right
+                    Math.PI * 1.0,   // Bottom left
+                    Math.PI * 1.4    // Top left
+                ];
+                
+                const layer2Nodes = ['specialist', 'pharmacist', 'therapists', 'emergency'];
+                layer2Nodes.forEach((nodeId, index) => {
+                    const angle = layer2Angles[index];
+                    const x = this.centerX + Math.cos(angle) * layer2Radius;
+                    const y = this.centerY + Math.sin(angle) * layer2Radius;
+                    this.nodePositions.set(nodeId, { x, y });
+                });
+                
+                // Layer 3 - Community & System (expanded to 320px radius circle)
+                const layer3Radius = 320;
+                const layer3Angles = [
+                    Math.PI * 0.3,   // Bottom right
+                    Math.PI * 1.1,   // Top left
+                    Math.PI * 1.8    // Top right
+                ];
+                
+                const layer3Nodes = ['school', 'inpatient', 'insurance'];
+                layer3Nodes.forEach((nodeId, index) => {
+                    const angle = layer3Angles[index];
+                    const x = this.centerX + Math.cos(angle) * layer3Radius;
+                    const y = this.centerY + Math.sin(angle) * layer3Radius;
+                    this.nodePositions.set(nodeId, { x, y });
+                });
+            }
+            
+            createNode(node, x, y) {
+                const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                group.classList.add('node-group');
+                group.setAttribute('data-node-id', node.id);
+                
+                // Node circle
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', y);
+                circle.setAttribute('r', node.radius);
+                circle.setAttribute('fill', node.color);
+                circle.setAttribute('stroke', '#43418A');
+                circle.setAttribute('stroke-width', '2');
+                circle.classList.add('node-circle');
+                group.appendChild(circle);
+                
+                // Icon
+                const icon = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                icon.setAttribute('x', x);
+                icon.setAttribute('y', y + 5);
+                icon.setAttribute('text-anchor', 'middle');
+                icon.setAttribute('font-size', node.radius * 0.8);
+                icon.textContent = node.icon;
+                group.appendChild(icon);
+                
+                // Label positioning - place labels radially outside their nodes
+                let labelY, labelX;
+                
+                if (node.id === 'child-patient') {
+                    // Center node label to the left (moved even further left)
+                    labelX = x - 120;
+                    labelY = y + 5;
+                } else {
+                    // Position labels radially outside nodes on circles
+                    const dx = x - this.centerX;
+                    const dy = y - this.centerY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Place label further from center along the radius
+                    const labelDistance = distance + node.radius + 25;
+                    labelX = this.centerX + (dx / distance) * labelDistance;
+                    labelY = this.centerY + (dy / distance) * labelDistance;
+                    
+                    // Special adjustments for specific nodes to avoid overlap
+                    if (node.id === 'inpatient') {
+                        labelX -= 20; // Move Inpatient Hospital Team text left
+                    }
+                    if (node.id === 'therapists') {
+                        labelX -= 25; // Move Therapists text left
+                    }
+                    if (node.id === 'specialist') {
+                        labelX += 15; // Move Specialist(s) text right
+                    }
+                    if (node.id === 'pcp') {
+                        labelY -= 25; // Move Primary Care Physician text up
+                        labelX -= 15; // Move Primary Care Physician text left
+                    }
+                }
+                
+                const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                label.setAttribute('x', labelX);
+                label.setAttribute('y', labelY);
+                label.classList.add(node.id === 'child-patient' ? 'center-label' : 'node-label');
+                
+                // Handle multi-line labels
+                const lines = node.label.split('\n');
+                if (lines.length > 1) {
+                    lines.forEach((line, index) => {
+                        const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                        tspan.setAttribute('x', labelX);
+                        tspan.setAttribute('dy', index === 0 ? '0' : '1.2em');
+                        tspan.textContent = line;
+                        label.appendChild(tspan);
+                    });
+                } else {
+                    label.textContent = node.label;
+                }
+                
+                group.appendChild(label);
+                return group;
+            }
+            
+            createConnection(fromId, toId, isPrimary = true) {
+                const from = this.nodePositions.get(fromId);
+                const to = this.nodePositions.get(toId);
+                
+                if (!from || !to) return null;
+                
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                
+                // Calculate control point for curved line - reduced curvature to avoid node intersections
+                const midX = (from.x + to.x) / 2;
+                const midY = (from.y + to.y) / 2;
+                const dx = to.x - from.x;
+                const dy = to.y - from.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Reduced curvature to minimize line crossings
+                const curvature = 0.1;
+                const controlX = midX + (-dy / distance) * (distance * curvature);
+                const controlY = midY + (dx / distance) * (distance * curvature);
+                
+                const pathData = `M ${from.x} ${from.y} Q ${controlX} ${controlY} ${to.x} ${to.y}`;
+                path.setAttribute('d', pathData);
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke', isPrimary ? '#43418A' : '#888888');
+                path.setAttribute('stroke-width', isPrimary ? '3' : '2');
+                if (!isPrimary) {
+                    path.setAttribute('stroke-dasharray', '8,4');
+                }
+                path.classList.add('communication-line');
+                path.setAttribute('data-from', fromId);
+                path.setAttribute('data-to', toId);
+                
+                return path;
+            }
+            
+            init() {
+                this.calculatePositions();
+                
+                // Create connections first (so they appear behind nodes)
+                this.connections.primary.forEach(([from, to]) => {
+                    const line = this.createConnection(from, to, true);
+                    if (line) this.svg.appendChild(line);
+                });
+                
+                this.connections.secondary.forEach(([from, to]) => {
+                    const line = this.createConnection(from, to, false);
+                    if (line) this.svg.appendChild(line);
+                });
+                
+                // Create center node
+                const centerPos = this.nodePositions.get('child-patient');
+                const centerNode = this.createNode(this.nodes.center, centerPos.x, centerPos.y);
+                this.svg.appendChild(centerNode);
+                
+                // Create layer nodes
+                [...this.nodes.layer1, ...this.nodes.layer2, ...this.nodes.layer3].forEach(node => {
+                    const pos = this.nodePositions.get(node.id);
+                    const nodeElement = this.createNode(node, pos.x, pos.y);
+                    this.svg.appendChild(nodeElement);
+                });
+                
+                this.addInteractivity();
+            }
+            
+            addInteractivity() {
+                const nodeGroups = this.svg.querySelectorAll('.node-group');
+                const lines = this.svg.querySelectorAll('.communication-line');
+                
+                nodeGroups.forEach(group => {
+                    group.addEventListener('mouseenter', (e) => {
+                        const nodeId = e.currentTarget.getAttribute('data-node-id');
+                        
+                        // Highlight connected lines
+                        lines.forEach(line => {
+                            const fromId = line.getAttribute('data-from');
+                            const toId = line.getAttribute('data-to');
+                            
+                            if (fromId === nodeId || toId === nodeId) {
+                                line.classList.add('connected');
+                                line.style.opacity = '1';
+                                line.style.strokeWidth = '4';
+                            } else {
+                                line.style.opacity = '0.2';
+                            }
+                        });
+                    });
+                    
+                    group.addEventListener('mouseleave', () => {
+                        lines.forEach(line => {
+                            line.classList.remove('connected');
+                            line.style.opacity = '1';
+                            line.style.strokeWidth = '';
+                        });
+                    });
+                });
+            }
+        }
+        
+        // Initialize the diagram when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new PediatricNetworkDiagram();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Evidence-Based Medicine: Core Concepts and Study Designs</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Austin Meyer, MD, PhD, MS, MPH, MS, FAAP, etc." />
+    <meta name="date" content="2025-06-13" />
+    <script src="libs/header-attrs-2.27/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Evidence-Based Medicine: Core Concepts and Study Designs
+]
+.author[
+### Austin Meyer, MD, PhD, MS, MPH, MS, FAAP, etc.
+]
+.date[
+### June 13, 2025
+]
+
+---
+
+
+
+
+class: middle, center, inverse
+
+# Evidence-Based Medicine: Core Concepts and Study Designs
+
+### A Lecture for Pediatric Residents
+
+---
+
+class: middle
+
+# Agenda: Part 1 - Statistics &amp; Measures
+
+.pull-left[
+**Session Overview:**
+1. **Introduction to EBM** - 5 min
+2. **Basic Statistical Terms** - 10 min  
+3. **Accuracy vs Precision** - 5 min
+4. **Statistical Inference** - 15 min
+5. **Hypothesis Testing** - 15 min
+6. **Clinical Metrics** - 20 min
+7. **Important Caveats** - 10 min
+]
+
+.pull-right[
+**Part 2 Preview:**
+1. **Key Concepts Review** - 5 min
+2. **Types of Biases** - 15 min
+3. **Study Designs** - 25 min
+4. **Study Limitations** - 15 min
+5. **Q&amp;A** - 5 min
+]
+
+---
+
+class: middle, center
+
+# Basic Statistical Terms
+
+---
+
+class: middle
+
+# Generalizability (External Validity)
+
+.pull-left[
+**Definition:** How applicable are findings from a study sample to the broader population?
+
+**Key Question:** Can you apply these results to YOUR patients in YOUR clinical setting?
+]
+
+.pull-right[
+**Clinical Example:**
+- Study: New asthma medication tested in highly controlled, homogeneous population
+- Your patients: Diverse demographics, varying comorbidities, different severities
+- **Question:** Are the findings generalizable?
+]
+
+---
+
+class: middle
+
+# P-value: What It Actually Means
+
+.pull-left[
+**Definition:** Probability of observing results this extreme (or more extreme) **IF the null hypothesis is true**
+
+**What p &lt; 0.05 means:**
+- IF there's truly no effect
+- THEN there's &lt; 5% chance of seeing this result
+- We reject "no effect" hypothesis
+]
+
+.pull-right[
+**Common Misconceptions:**
+- ❌ 5% chance null hypothesis is true
+- ❌ 95% chance alternative is true  
+- ❌ Probability result was due to chance
+
+**Correct Interpretation:**
+- ✅ Evidence against null hypothesis
+- ✅ Statistical significance at α = 0.05
+]
+
+---
+
+class: middle
+
+# Confidence Interval (CI)
+
+.pull-left[
+**Definition:** Range of plausible values for the true population parameter
+
+**95% CI Interpretation:**
+- If we repeated the study many times
+- 95% of calculated CIs would contain the true value
+- Provides precision estimate
+]
+
+.pull-right[
+**Relationship to P-value:**
+- For differences: CI excluding 0 → p &lt; 0.05
+- For ratios: CI excluding 1 → p &lt; 0.05
+- Wider CI = less precision
+- Narrower CI = more precision
+]
+
+---
+
+class: middle
+
+# Efficacy vs Effectiveness
+
+.pull-left[
+### Efficacy
+**"Can it work?"**
+- Ideal conditions
+- Controlled settings
+- High adherence
+- Selected patients
+- RCT environment
+]
+
+.pull-right[
+### Effectiveness  
+**"Does it work in practice?"**
+- Real-world conditions
+- Routine clinical practice
+- Variable adherence
+- Diverse patients
+- Practical constraints
+]
+
+---
+
+class: middle, center
+
+# Accuracy and Precision
+
+---
+
+class: middle, center
+
+# Visual Reminder: Accuracy vs Precision
+
+&lt;img src="Evidence-Based-Medicine---Part-3_files/figure-html/precision-accuracy-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle
+
+# Accuracy vs Precision Definitions
+
+.pull-left[
+**Accuracy**
+- How close to the TRUE value
+- Think: hitting the bullseye
+- Threatened by **bias** (systematic error)
+- Results close to reality
+]
+
+.pull-right[
+**Precision**
+- How consistent/reproducible
+- Think: tight grouping of shots
+- Threatened by **random error** (small sample)
+- Narrow confidence intervals
+]
+
+---
+
+class: middle, center
+
+# Statistical Inference &amp; Distributions
+
+---
+
+class: middle
+
+# Distribution Properties Matter
+
+.pull-left[
+&lt;img src="Evidence-Based-Medicine---Part-3_files/figure-html/normal-dist-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="Evidence-Based-Medicine---Part-3_files/figure-html/t-dist-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+class: middle
+
+# Real Data Can Be Complex
+
+.pull-left[
+&lt;img src="Evidence-Based-Medicine---Part-3_files/figure-html/unimodal-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+**Single peak** - homogeneous population
+]
+
+.pull-right[
+&lt;img src="Evidence-Based-Medicine---Part-3_files/figure-html/bimodal-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+**Two peaks** - distinct subgroups
+]
+
+---
+
+class: middle
+
+# Skewed Distributions: Order Matters
+
+.pull-left[
+&lt;img src="Evidence-Based-Medicine---Part-3_files/figure-html/right-skew-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="Evidence-Based-Medicine---Part-3_files/figure-html/left-skew-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+class: middle
+
+# Quick Quiz: Skewed Distribution
+
+.pull-left[
+**Which order (left to right) for Right Skewed?**
+
+A. mean, median, mode  
+B. mode, mean, median  
+C. median, mode, mean  
+D. **mode, median, mean**  
+E. mean, mode, median
+
+**Remember:** Tail direction = skew direction
+]
+
+.pull-right[
+&lt;img src="Evidence-Based-Medicine---Part-3_files/figure-html/quiz-plot-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+class: middle, center
+
+# Hypothesis Testing
+
+---
+
+class: middle
+
+# Statistical Tests by Data Type
+
+.pull-left[
+**Categorical Data (Counts)**
+- **Chi-square test:** 2+ categorical variables
+- **Fisher exact test:** 2×2 tables, small cells
+- *Example:* Vaccination status vs disease outcome
+
+**Quantitative + Groups**
+- **T-test:** Compare 2 group means
+  - *Paired:* Before/after same subjects
+  - *Independent:* Different groups
+- **Mann-Whitney U:** Non-parametric alternative
+- **ANOVA:** Compare 3+ group means
+]
+
+.pull-right[
+**Ordinal Data (Ranked)**
+- **Spearman correlation:** Monotonic relationships
+- *Example:* Disease severity (mild/moderate/severe) vs pain score
+
+**Two Quantitative Variables**
+- **Pearson correlation:** Linear relationships
+- *Example:* Age vs height in children
+]
+
+---
+
+class: middle, center
+
+# Question
+
+.pull-left[
+**Table 1: OCP Use and Blood Clots**
+
+| | Clot | No Clot | Total |
+|---|---:|---:|---:|
+| **OCP Use** | 500 | 400 | 900 |
+| **No OCP Use** | 80 | 20 | 100 |
+| **Total** | 580 | 420 | 1000 |
+]
+
+.pull-right[
+**Best method to assess association?**
+
+A. Two sample T-test  
+B. Analysis of variance  
+C. Pearson correlation  
+D. Chi-square test
+E. Spearman correlation
+]
+
+---
+
+class: middle, center
+
+# Question
+
+.pull-left[
+**Table 1: OCP Use and Blood Clots**
+
+| | Clot | No Clot | Total |
+|---|---:|---:|---:|
+| **OCP Use** | 500 | 400 | 900 |
+| **No OCP Use** | 80 | 20 | 100 |
+| **Total** | 580 | 420 | 1000 |
+]
+
+.pull-right[
+**Best method to assess association?**
+
+A. Two sample T-test  
+B. Analysis of variance  
+C. Pearson correlation  
+D. **Chi-square test** ✓  
+E. Spearman correlation
+
+**Why Chi-square?** Two categorical variables (OCP: Yes/No, Clot: Yes/No)
+]
+
+---
+
+class: middle
+
+# Hypothesis Testing Framework
+
+.pull-left[
+**Null Hypothesis (H₀)**
+- Default assumption
+- "No effect," "no difference," "no relationship"
+- What we test against
+
+**Alternative Hypothesis (H₁)**
+- What we want to demonstrate
+- "There IS an effect/difference/relationship"
+- Never "proven," only supported
+]
+
+.pull-right[
+**Decision Rules**
+- **Reject H₀ if p &lt; 0.05** (typical)
+- For ratios: 95% CI not including 1
+- For differences: 95% CI not including 0
+
+**Board Exam Tip:** Assume H₀ rejected when p &lt; 0.05
+]
+
+---
+
+class: middle
+
+# Four Possible Outcomes
+
+.center[
+| | H₀ True | H₀ False |
+|---|---|---|
+| **Reject H₀** | Type I Error (α) | Correct ✓ |
+| **Fail to Reject H₀** | Correct ✓ | Type II Error (β) |
+]
+
+.pull-left[
+**Type I Error (α = False Positive)**
+- Conclude effect when none exists
+- Usually set at 5%
+
+**Power (1-β)**
+- Probability of detecting true effect
+- Increases with sample size
+]
+
+.pull-right[
+**Type II Error (β = False Negative)**  
+- Miss a real effect
+- Often due to small sample
+
+**Key Point:** Bigger sample = More power
+]
+
+---
+
+class: middle, center
+
+# Clinical/Epidemiological Metrics
+
+---
+
+class: middle
+
+# Essential Metrics You Must Know
+
+.pull-left[
+### The Big Four
+1. **Odds Ratio (OR)**
+2. **Risk Ratio (RR)**  
+3. **Risk Difference (RD)**
+4. **Number Needed to Treat (NNT)**
+]
+
+.pull-right[
+### When to Use Each
+- **OR:** Case-control studies, rare diseases
+- **RR:** Cohort studies, RCTs  
+- **RD:** When absolute risk matters
+- **NNT:** Clinical decision-making
+]
+
+---
+
+class: middle, center
+
+# Sample Data for Calculations
+
+&lt;img src="Evidence-Based-Medicine---Part-3_files/figure-html/sample-data-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle, center
+
+# Standard 2×2 Table Format
+
+| | Disease | No Disease | Total |
+|---|---:|---:|---:|
+| **Exposed** | 30 (a) | 70 (b) | 100 (a+b) |
+| **Not Exposed** | 20 (c) | 80 (d) | 100 (c+d) |
+| **Total** | 50 (a+c) | 150 (b+d) | 200 (N) |
+
+**Cell Labels:** Use a, b, c, d for formulas
+
+---
+
+class: middle
+
+# Understanding Odds
+
+.pull-left[
+**Formula:**
+`$$\text{Odds} = \frac{P(\text{Event})}{P(\text{No Event})}$$`
+
+**Exposed Group:**
+- P(Disease) = 30/100 = 0.3
+- P(No Disease) = 70/100 = 0.7  
+- **Odds = 30/70 = 0.43**
+]
+
+.pull-right[
+**Non-Exposed Group:**
+- P(Disease) = 20/100 = 0.2
+- P(No Disease) = 80/100 = 0.8
+- **Odds = 20/80 = 0.25**
+
+**Shortcut:** Odds = a/b and c/d
+]
+
+---
+
+class: middle
+
+# Odds Ratio (OR) Calculation
+
+
+
+.pull-left[
+**Formula:**
+`$$OR = \frac{\text{Odds}_{\text{exposed}}}{\text{Odds}_{\text{unexposed}}} = \frac{a \times d}{b \times c}$$`
+
+**Our Data:**
+`$$OR = \frac{30 \times 80}{70 \times 20} = \frac{2400}{1400} = 1.71$$`
+]
+
+.pull-right[
+**95% Confidence Interval:**
+`$$e^{\ln(OR) \pm 1.96\sqrt{\frac{1}{a}+\frac{1}{b}+\frac{1}{c}+\frac{1}{d}}}$$`
+
+**Result:** (0.89, 3.29)
+
+**Interpretation:** Exposed group has 1.71 times the odds of disease
+]
+
+---
+
+class: middle
+
+# Risk Ratio (RR) Calculation
+
+
+
+.pull-left[
+**Formula:**
+`$$RR = \frac{\text{Risk}_{\text{exposed}}}{\text{Risk}_{\text{unexposed}}}$$`
+
+**Calculations:**
+- Risk_exposed = 30/100 = 0.3
+- Risk_unexposed = 20/100 = 0.2  
+- **RR = 0.3/0.2 = 1.5**
+]
+
+.pull-right[
+**95% CI:** (0.92, 2.46)
+
+**Interpretation:** Exposed group has 1.5 times the risk
+
+**Note:** Only use with cohort studies/RCTs!
+]
+
+---
+
+class: middle
+
+# Risk Difference &amp; NNT
+
+
+
+.pull-left[
+**Risk Difference (RD):**
+`$$RD = \text{Risk}_{\text{exposed}} - \text{Risk}_{\text{unexposed}}$$`
+`$$RD = 0.3 - 0.2 = 0.1$$`
+
+**Interpretation:** 10% absolute increase in risk
+]
+
+.pull-right[
+**Number Needed to Harm (NNH):**
+`$$NNH = \frac{1}{|RD|} = \frac{1}{|0.1|} = 10$$`
+
+**Interpretation:** For every 10 people exposed, 1 additional person gets disease
+
+**Clinical Relevance:** Practical impact measure
+]
+
+---
+
+class: middle
+
+# Interpretation Guide
+
+.pull-left[
+**Odds Ratio (OR)**
+- OR = 1: No association
+- OR &gt; 1: Increased odds  
+- OR &lt; 1: Decreased odds (protective)
+
+**Risk Ratio (RR)**  
+- RR = 1: No association
+- RR &gt; 1: Increased risk
+- RR &lt; 1: Decreased risk (protective)
+]
+
+.pull-right[
+**Risk Difference (RD)**
+- RD = 0: No difference
+- RD &gt; 0: Increased absolute risk
+- RD &lt; 0: Decreased absolute risk
+
+**Statistical Significance**
+- **For ratios:** 95% CI excludes 1
+- **For differences:** 95% CI excludes 0
+]
+
+---
+
+class: middle, center
+
+# Important Caveats
+
+---
+
+class: middle
+
+# Critical Points to Remember
+
+.pull-left[
+**When CI Includes 1 (for ratios):**
+- Result NOT statistically significant
+- "No effect" is plausible
+- Be cautious interpreting
+
+**Risk Ratios vs Odds Ratios:**
+- RR only from population samples
+- OR from case-control studies
+- OR approximates RR for rare diseases
+]
+
+.pull-right[
+**Subgroup Analysis Warning:**
+- Seems clinically relevant
+- **Major source of false positives**
+- Better for hypothesis generation
+- Avoid definitive conclusions
+
+**Multiple Testing Problem:**
+- 20 tests → expect 1 false positive
+- α = 0.05 means 5% false positive rate
+]
+
+---
+
+class: middle
+
+# Multiple Testing Reality Check
+
+.pull-left[
+.center[
+
+Table: Example: Multiple Comparisons Problem
+
+|Variable  |P_value |Significant |
+|:---------|:-------|:-----------|
+|Age       |0.042*  |Yes         |
+|Gender    |0.156   |No          |
+|BMI       |0.678   |No          |
+|Smoking   |0.023*  |Yes         |
+|Exercise  |0.891   |No          |
+|Diet      |0.034*  |Yes         |
+|Sleep     |0.456   |No          |
+|Stress    |0.012*  |Yes         |
+|Education |0.789   |No          |
+|Income    |0.067   |No          |
+|Location  |0.445   |No          |
+|Season    |0.028*  |Yes         |
+]
+]
+
+.pull-right[
+**The Problem:**
+- 12 tests performed
+- 5 "significant" results  
+- Expected by chance: 12 × 0.05 ~ 1
+
+**Reality Check:**
+- Most are likely false positives due to nearness to 0.05
+- Need correction for multiple testing
+- Better for hypothesis generation
+]
+
+---
+
+class: middle, center, inverse
+
+# Part 2: Study Designs &amp; Biases
+
+---
+
+class: middle
+
+# Key Concepts Review
+
+.pull-left[
+**Internal Validity**
+- Results true for study participants
+- Free from bias and confounding  
+- Cause-and-effect relationships
+- High control = high internal validity
+]
+
+.pull-right[
+**External Validity (Generalizability)**
+- Results apply to other populations
+- Relevant to YOUR patients
+- Real-world applicability
+- Often trade-off with internal validity
+]
+
+---
+
+class: middle, center
+
+# Types of Biases
+
+---
+
+class: middle
+
+# Design &amp; Hidden Variable Biases
+
+.pull-left[
+**Selection Bias**
+- Non-random group assignment
+- Systematic baseline differences
+- *Example:* Healthier patients get new treatment
+- *Solution:* Randomization
+
+**Observer-Expectancy Bias**  
+- Researcher expectations influence observations
+- *Example:* Doctor expects drug to work
+- *Solution:* Blinding
+]
+
+.pull-right[
+**Effect Modification**
+- Effect varies by third variable
+- *Example:* Drug works in boys, not girls
+- *Solution:* Stratified analysis
+
+**Confounding**
+- Third variable causes apparent association
+- *Example:* Coffee → cancer (but smoking is real cause)
+- *Solutions:* Randomization, regression analysis
+]
+
+---
+
+class: middle
+
+# Information (Measurement) Biases
+
+.pull-left[
+**Recall Bias**
+- Diseased patients remember exposures better
+- *Example:* Birth defect mothers recall medications
+- *Solutions:* Objective data, medical records
+
+**Procedure Bias**
+- Systematic differences in data collection
+- *Example:* More time spent with treatment group
+- *Solutions:* Standardized protocols, blinding
+]
+
+.pull-right[
+**Instrument Bias**
+- Faulty or inconsistent measurement tools
+- *Example:* Miscalibrated BP cuff, unclear survey
+- *Solutions:* Calibration, validation, reliability testing
+]
+
+---
+
+class: middle
+
+# Time &amp; Completion Biases
+
+.pull-left[
+**Lead-Time Bias**
+- Earlier detection ≠ longer survival
+- *Example:* Screening finds cancer 5 years earlier, same death age
+- *Solution:* Measure from symptom onset
+
+**Attrition Bias**
+- Systematic withdrawal related to outcome
+- *Example:* Side effects cause dropout
+- *Solutions:* Intention-to-treat analysis
+]
+
+.pull-right[
+**Loss-to-Follow-Up**
+- Participants don't return for visits
+- Can be random or systematic
+- *Solutions:* Good contact maintenance, incentives
+- **Concern if &gt;20% loss**
+]
+
+---
+
+class: middle, center
+
+# The pyramid of evidence is a hierarchy
+
+&lt;img src="figs/evidence_pyramid.jpg" width="50%" /&gt;
+
+--- 
+
+class: middle, center
+
+# Experimental Trials
+
+---
+
+class: middle, center
+
+# Randomized control trial is in the name
+
+&lt;img src="figs/randomized_control.png" width="90%" /&gt;
+
+---
+
+class: middle
+
+# Randomized control - gold standard
+
+--
+
+- This is widely considered the gold standard for clinical evidence
+--
+&lt;br&gt;&lt;br&gt;
+- Question: __Primary__ purpose of randomization?
+--
+
+- Answer: To eliminate __selection bias__
+  - Selection bias (at the time of randomization) is eliminated if randomization is technically correct
+--
+
+&lt;br&gt;&lt;br&gt;
+- Question: Secondary goal of randomization?
+--
+
+- Answer: To help with confounding
+  - Confounders are not necessarily eliminated even with perfect technical execution
+--
+&lt;br&gt;&lt;br&gt;
+- Can use relative risk because investigator knows prevalence of disease and prior exposures
+
+---
+
+class: middle
+
+# Randomized control - limitations
+
+- Can still technically suffer from selection bias (as defined by epidemiologists). Why?
+--
+&lt;br&gt;
+  - Loss to follow up
+--
+&lt;br&gt;&lt;br&gt;
+- They may or may not externalize well
+--
+&lt;br&gt;&lt;br&gt;
+- There are may ethical concerns in pediatrics
+--
+&lt;br&gt;&lt;br&gt;
+- They are ridiculously expensive
+
+---
+
+class: middle
+
+# Crossover trial - groups switch
+
+&lt;img src="figs/crossover.png" width="100%" /&gt;
+
+&lt;br&gt;
+- This post hoc analysis is overly simplified for real life
+ 
+- This understanding is sufficient for boards
+ 
+- Includes initial randomization
+
+- Also, confounders reduced because a patient can serve as their own control
+
+---
+
+class: middle, center
+
+# Observational Studies
+
+---
+
+class: middle
+
+# Prospective cohorts - into the future
+
+&lt;img src="figs/prospective_cohort.png" width="100%" /&gt;
+
+
+---
+
+
+class: middle
+
+# Retrospective cohorts - from the past
+
+&lt;img src="figs/retrospective_cohort.png" width="100%" /&gt;
+
+
+---
+
+class: middle
+
+# Cohorts form the next level of evidence
+ 
+--
+
+- Can still use relative risk because investigator knows prevalence of exposure and disease
+- Subjects vary by exposure status
+- Can calculate incidence
+--
+&lt;br&gt;&lt;br&gt;
+- __Selection bias__ is the biggest problem
+  - Investigator has infinite control over inclusion
+--
+&lt;br&gt;&lt;br&gt;
+- Other Prospective biases
+  - Attrition - people leave the trial intentionally
+  - Loss-to-follow up - people just stop showing up
+  - Confounding - baseline characteristics or ongoing characteristics are difference
+  - Hawthorne - people act differently once observed
+--
+&lt;br&gt;&lt;br&gt;
+- Retrospective bias
+  - Information bias
+
+---
+
+class: middle, center
+
+# Case-control trials measure chance of exposure given disease
+
+&lt;img src="figs/case_control.png" width="100%" /&gt;
+
+---
+
+class: middle
+
+# Case-control forms the next level down from cohorts
+--
+
+- Must use odds ratio because investigator does not know prevalence of disease
+--
+&lt;br&gt;&lt;br&gt;
+- Subjects grouped by cases and controls
+  - Measure __odds of exposure__ in case and control groups
+--
+&lt;br&gt;&lt;br&gt;
+- Significantly improved power and decreased resource requirements compared to cohorts 
+  - Due to cases being selected at out set
+--
+&lt;br&gt;&lt;br&gt;
+- __Selection and Recall biases__ are the biggest problem
+  - Selecting appropriate controls is __highly__ non-trivial
+  - Sick people remember exposures (e.g. Melanoma patients stew about their sunburns)
+--
+&lt;br&gt;&lt;br&gt;
+- Also common
+   - Information biases
+--
+&lt;br&gt;&lt;br&gt;
+- __Cannot calculate incidence or prevalence__
+
+---
+
+class: middle, center
+
+# Cross-sectional trials measure exposure and disease simultaneously
+
+&lt;img src="figs/cross_sectional.png" width="100%" /&gt;
+
+---
+
+class: middle
+
+# Cross-sectional study - next level
+
+--
+
+- __Quick, cheap, and easy__
+  - Typically this is a starting point
+--
+&lt;br&gt;&lt;br&gt;
+- Can establish prevalence of disease
+--
+&lt;br&gt;&lt;br&gt;
+- Must use chi-squared or correlation for statistical test
+--
+&lt;br&gt;&lt;br&gt;
+- Subjects can be grouped by exposure and diease in to the 2x2 contingency
+--
+&lt;br&gt;&lt;br&gt;
+- __Cannot establish causation__
+--
+&lt;br&gt;&lt;br&gt;
+- Cannot calculate risk metrics
+ 
+---
+
+class: middle, center
+
+# Questions?
+
+### Thank you for your attention!
+
+**Remember:** Evidence-based medicine combines the best research evidence with clinical expertise and patient values.
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": true,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

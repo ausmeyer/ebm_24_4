@@ -1,0 +1,1174 @@
+---
+title: "Evidence-Based Medicine - Part 4"
+subtitle: "Quality Improvement, Patient Safety & Applying EBM in Pediatric Practice"
+author: "Austin Meyer, MD, PhD, MPH, MS, FAAP, etc."
+date: "November 15, 2024"
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["xaringan-themer.css"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlide: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, 
+  fig.height=3.5, 
+  fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = FALSE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+```
+
+# Learning Objectives
+
+By the end of this lecture, residents will be able to:
+
+--
+
+✅ **Apply** quality improvement methodologies to pediatric clinical scenarios
+
+--
+
+✅ **Identify and analyze** patient safety issues using systematic approaches
+
+--
+
+✅ **Design and implement** evidence-based practice changes
+
+--
+
+✅ **Critically evaluate** clinical practice guidelines and systematic reviews
+
+--
+
+✅ **Integrate** EBM principles into daily pediatric practice
+
+---
+
+class: inverse, center, middle
+
+# Section 1: Quality Improvement Fundamentals
+
+## Why QI Matters in Pediatrics
+
+---
+
+# Patient Safety Statistics in Pediatrics
+
+.pull-left[
+#### Medical Errors: A Major Problem
+- **44,000-98,000** inpatient deaths annually in US due to medical errors
+- Children face **heightened risk** compared to adults
+- **12.91** adverse events per 1000 hospital discharges (birth-15 years)
+
+#### Why Children Are More Vulnerable
+- Ongoing physiological development
+- Dependency on caregivers
+- Weight-based dosing requirements
+- Communication challenges
+]
+
+.pull-right[
+```{r pediatric-safety-stats, fig.height=4}
+# Google Search Prompt: "pediatric vs adult medical error rates bar chart infographic"
+knitr::include_graphics("figs/med_err.jpg")
+```
+]
+
+.footnote[
+Institute of Medicine report; Principles of Pediatric Patient Safety, Pediatrics 2011
+]
+
+---
+
+# Medication Errors in Pediatrics
+
+.pull-left[
+#### Inpatient Setting
+- **5.7%** of medication orders had errors
+- **2.3%** of hospitalizations had ADEs
+- **3x more common** than in adults
+- **47%** of NICU errors involve medications
+
+#### Outpatient Setting
+- **37%** of errors were medication-related
+- **15%** of new prescriptions had dosing errors
+- **3%** of patients experienced preventable ADEs
+]
+
+.pull-right[
+```{r medication-errors, fig.height=4}
+# Google Search Prompt: "medication use process flowchart prescribing dispensing administration"
+knitr::include_graphics("figs/med_err_by_age.jpg")
+```
+]
+
+.footnote[
+Principles of Pediatric Patient Safety, Pediatrics 2011
+]
+
+---
+
+# Communication Failures in Pediatrics
+
+#### The Communication Challenge
+
+- **30%** of malpractice claims involve communication failures
+- **$1.7 billion** in costs over 5 years
+- **1,744 deaths** attributed to communication breakdowns
+
+--
+
+#### Pediatric-Specific Challenges
+- **Limited patient participation** due to age
+- **Multiple caregivers** (parents, specialists, school)
+- **Increasing medical complexity**
+- **High-volume, fast-paced** environments
+
+--
+
+#### Common Communication Failures
+- Handoff errors (shift changes, sign-offs)
+- Inadequate family communication
+- Missing critical information during transitions
+- Language and cultural barriers
+
+.footnote[
+Joint Commission Sentinel Event Alert; Safe handoff practices, Anales de Pediatría 2023
+]
+
+---
+
+# The Cost of Poor Quality
+
+```{r cost-table}
+cost_data <- data.frame(
+  "Quality Issue" = c("PICU Readmission", "Pediatric HA-BSI", "PICU Nosocomial Infection", "Congenital Malformation Readmission"),
+  "Key Cost Metric" = c("Mean total hospital costs", "Attributable healthcare cost", "Median additional cost", "Average readmission cost"),
+  "Value (USD/EUR)" = c("$40,261 vs $22,735", "$1,642 - $160,804", "€30,791.4", "$26,300"),
+  "Impact" = c("77% higher for readmitted", "Wide variation by case", "8x higher PICU LOS", "Highest by condition type")
+)
+
+kable(cost_data, 
+      caption = "Financial Impact of Quality Issues in Pediatrics",
+      format = "html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+#### Key Takeaways
+- Readmissions cost **12.4% more** than index admissions.
+- Pediatric readmission rates are **10-13%**.
+- Patients with complex conditions drive the **highest costs**.
+- Prevention through QI has a clear **return on investment**.
+
+.footnote[
+Various HCUP Statistical Briefs and cost studies cited in research document
+]
+
+---
+
+# QI vs. Research: Key Distinctions
+
+```{r qi-vs-research-table}
+comparison_data <- data.frame(
+  Feature = c("Primary Aim", "Key Question", "Methodology", "Generalizability", "Ethical Oversight", "Timeline"),
+  `Quality Improvement` = c("Improve local system", "How can we improve this HERE?", "PDSA, Lean, known best practices", "Local context only", "May not require IRB", "Rapid, iterative"),
+  Research = c("Generate new knowledge", "What is the effect of X on Y?", "Scientific method, hypothesis-driven", "Designed for broad application", "Requires IRB approval", "Often lengthy")
+)
+
+kable(comparison_data, 
+      caption = "QI vs. Research: Critical Distinctions",
+      format = "html",
+      col.names = c("Feature", "Quality Improvement", "Research")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+#### When to Use Each Approach
+- **QI**: To apply known best practices in your local setting.
+- **Research**: To discover new knowledge for widespread use.
+
+.footnote[
+Synthesized from UMD School of Nursing, U Pitt School of Nursing
+]
+
+---
+
+class: inverse, center, middle
+
+# Core QI Methodologies
+## Plan-Do-Study-Act (PDSA) Cycles
+
+---
+
+# The PDSA Cycle
+
+.pull-left[
+```{r pdsa-cycle, out.width="70%"}
+# Google Search Prompt: "PDSA cycle diagram simple 4 quadrants"
+knitr::include_graphics("figs/pdsa.png")
+```
+]
+
+.pull-right[
+#### The Four Stages
+
+**Plan**: Define objective, predict outcome, plan the test.
+
+**Do**: Implement the change, collect data, note observations.
+
+**Study**: Analyze data, compare to predictions, summarize learnings.
+
+**Act**: Adopt, adapt, or abandon the change. Repeat the cycle.
+]
+
+#### Key Success Factors
+- **Iterative cycles** that build on each other
+- **Small-scale tests** to start
+- **Prediction-based** testing
+- **Data-driven** decisions
+
+.footnote[
+Adoption of PDSA Cycles in Healthcare: A Systematic Review
+]
+
+---
+
+# PDSA in Action: Reducing CAUTIs in PICU
+
+#### The Problem
+- Increased CAUTI rates in PICU.
+- Nurses using povidone-iodine instead of soap/water protocol.
+
+--
+
+#### PDSA Cycle 1: Assessment & Education
+- **Plan/Do**: Survey staff on care practices.
+- **Study/Act**: Found only **8.8%** compliance → Created educational flyers.
+
+--
+
+#### PDSA Cycle 2: Re-assessment
+- **Plan/Do**: Post-education survey.
+- **Study/Act**: Compliance improved to **97.2%** → Identified need to modify bundle.
+
+--
+
+#### PDSA Cycle 3: Hardwiring the Change
+- **Plan/Do**: Modified CAUTI bundle checklist & started targeted rounding.
+- **Study**: Achieved **100%** compliance with soap/water use.
+- **Act**: **Zero CAUTIs** reported in the year following the intervention.
+
+.footnote[
+Reducing Catheter-Associated Urinary Tract Infections, UMSL Dissertation 2022
+]
+
+---
+
+# PDSA Success: Vaccination Rates
+
+```{r vaccination-pdsa, fig.height=3}
+# Data for Growth Chart Plotting Improvement
+growth_data <- data.frame(
+  Session = factor(c("Baseline", "Post-Training", "Post-Supervision", "Sustained"), 
+                   levels = c("Baseline", "Post-Training", "Post-Supervision", "Sustained")),
+  Coverage = c(31, 65, 85, 92)
+)
+
+ggplot(growth_data, aes(x = Session, y = Coverage, group = 1)) +
+  geom_line(color = "#43418A", size = 1.1) +
+  geom_point(color = "#43418A", size = 3) +
+  geom_hline(yintercept = 90, linetype = "dashed", color = "darkgreen") +
+  ylim(0, 100) +
+  labs(title = "Improving Growth Chart Plotting via PDSA Cycles",
+       subtitle = "Coverage increased from 31% to over 90%",
+       x = "PDSA Intervention Stage",
+       y = "Growth Chart Plotting Coverage (%)") +
+  theme_minimal(base_size = 12) +
+  annotate("text", x = 3.5, y = 95, label = "Goal: >90%", color = "darkgreen")
+```
+
+#### Adolescent Well-Visits & Immunizations
+- **Setting**: 12 pediatric primary care practices.
+- **Interventions**: EHR optimization, recall systems, staff education.
+- **Result**: Statistically significant increase in well-visits (p=0.04).
+
+.footnote[
+Quality improvement initiative, Delhi immunization clinic, PMC 2024; Adolescents, Well Visits, and Immunizations QI study, ResearchGate 2024
+]
+
+---
+
+class: inverse, center, middle
+
+# Core QI Methodologies
+## Lean Principles in Healthcare
+
+---
+
+# Lean Healthcare: Core Principles
+
+.pull-left[
+#### The Five Core Principles
+
+1. **Specify Value** (from patient's view)
+
+2. **Map Value Stream** (find waste)
+
+3. **Create Flow** (remove bottlenecks)
+
+4. **Establish Pull** (work on demand)
+
+5. **Seek Perfection** (continuously improve)
+
+#### Key Focus
+- **Patient-centered** value
+- **Systematic** waste reduction
+- **Continuous improvement** culture
+]
+
+.pull-right[
+```{r lean-principles, out.width="100%"}
+# Google Search Prompt: "lean management house diagram healthcare"
+#knitr::include_graphics("figs/lean-house-healthcare.png")
+```
+]
+
+.footnote[
+Lean-Based Approach to Improve Emergency Department Throughput, PMC 2024
+]
+
+---
+
+# Lean Healthcare: Eliminating Waste
+
+#### Types of Waste (DOWNTIME)
+
+.pull-left[
+- **D**efects
+- **O**verproduction
+- **W**aiting
+- **N**on-utilized talent
+]
+
+.pull-right[
+- **T**ransportation
+- **I**nventory
+- **M**otion
+- **E**xtra processing
+]
+
+--
+
+#### Healthcare Examples
+- **Waiting**: Patients waiting for discharge; lab result delays.
+- **Motion**: Nurses walking long distances for common supplies.
+- **Defects**: Medication errors; wrong-site surgery.
+- **Non-utilized talent**: Physicians doing tasks others are trained for.
+
+.footnote[
+Lean-Based Approach to Improve Emergency Department Throughput, PMC 2024
+]
+
+---
+
+# Lean Success: ED Throughput
+
+#### The Challenge
+- ED overcrowding linked to adverse outcomes, LWBS rates, and burnout.
+- Goal: Improve fast-track efficiency with no additional operational costs.
+
+--
+
+#### Lean-Based Intervention
+- **Value Stream Mapping** to identify inefficiencies.
+- **Simultaneous evaluation** by RN and NP/physician.
+- **Dedicated procedure room** for additional care.
+- **Results waiting area** to free up exam rooms.
+
+--
+
+#### Results
+- **Length of Stay**: ↓ 31 minutes (9% reduction)
+- **Time to Disposition**: ↓ 9% (statistically significant)
+- **Patients Leaving AMA**: ↓ 29.4% (statistically significant)
+- **Patients Seen per Shift**: ↑ 21% (statistically significant)
+
+.footnote[
+Lean-Based Approach to Improve Emergency Department Throughput, PMC 2024
+]
+
+---
+
+# Lean Success: Pediatric A&E Stockholm
+
+```{r stockholm-results, fig.height=3.5}
+# Data for Stockholm A&E improvements
+stockholm_data <- data.frame(
+  Metric = c("Time to MD (min)", "Time to MD (min)", "% Seen < 4 hrs", "% Seen < 4 hrs"),
+  Period = factor(c("Before", "After"), levels = c("Before", "After")),
+  Value = c(67, 51, 67, 80)
+)
+
+ggplot(stockholm_data, aes(x = Metric, y = Value, fill = Period)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = Value), position = position_dodge(width = 0.9), vjust = -0.5) +
+  scale_fill_manual(values = c("Before" = "#D9D9E7", "After" = "#43418A")) +
+  labs(title = "Pediatric A&E Improvements After Lean Implementation",
+       subtitle = "Improvements achieved despite a 9% increase in patient volume",
+       x = "Key Performance Metric",
+       y = "Value") +
+  theme_minimal(base_size = 12) +
+  theme(legend.title = element_blank())
+```
+
+#### Key Interventions
+- Multi-professional care teams & redesigned workspace.
+- Centralized flow managers & visual "takt board".
+- Increased senior physician involvement in flow.
+
+.footnote[
+How does lean work in emergency care?, PMC 2012
+]
+
+---
+
+class: inverse, center, middle
+
+# Measuring What Matters
+## Process vs. Outcome Measures
+
+---
+
+# Understanding Quality Measures
+
+.pull-left[
+#### The Donabedian Model
+
+```{r donabedian-model, out.width="100%"}
+# Google Search Prompt: "Donabedian model structure process outcome simple diagram"
+knitr::include_graphics("figs/don.jpg")
+```
+]
+
+--
+
+.pull-right[
+#### Types of Measures
+- **Structure**: The "what" - EHRs, staffing, equipment.
+- **Process**: The "how" - Actions taken, adherence to protocols.
+- **Outcome**: The "result" - Impact on patient health (mortality, readmissions).
+
+#### Why Process Measures Matter
+> *"Every system is perfectly designed to get the results it gets."* - Dr. Paul Batalden
+
+- They are **actionable** and reveal **root causes** of poor outcomes.
+- They help reduce **undesirable variation** in care.
+]
+
+.footnote[
+Understanding and Measuring Clinical Outcomes, Simbo.ai; Process vs Outcome Measures, Health Catalyst
+]
+
+---
+
+# Pediatric Examples: Process vs. Outcome
+
+```{r process-outcome-examples}
+examples_data <- data.frame(
+  Type = c("Process", "Process", "Outcome", "Outcome"),
+  `Pediatric Example` = c(
+    "% children receiving recommended vaccines by 24 months",
+    "% adolescents with an annual well-child visit",
+    "30-day readmission rate for pediatric asthma",
+    "Surgical site infection rate post-appendectomy"
+  ),
+  Focus = c(
+    "Measures adherence to best practice",
+    "Indicates delivery of preventive care",
+    "Reflects overall effectiveness of care",
+    "Shows direct impact on patient health"
+  )
+)
+
+kable(examples_data, 
+      caption = "Process vs. Outcome Measures in Pediatric Care",
+      format = "html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+#### Key Insight
+- A focus on **process measures** helps identify system issues and avoids a culture of individual blame when outcomes are poor.
+
+.footnote[
+Understanding and Measuring Clinical Outcomes; Process vs Outcome Measures
+]
+
+---
+
+# Balancing Measures: Avoiding Unintended Consequences
+
+.pull-left[
+#### What Are They?
+- Measures to monitor for **unintended negative effects** elsewhere in the system when you make a change.
+- They answer the question: *"Are we improving one thing at the expense of another?"*
+
+#### Example: Reducing ED Length of Stay
+- **Primary Measure**: Time from arrival to discharge.
+- **Balancing Measures**:
+  - 30-day readmission rate, Staff satisfaction/burnout, etc
+]
+
+.pull-right[
+#### Example: Increasing Resident Safety Reporting
+- **Primary Measure**: Number of safety reports submitted.
+- **Result**: Increased from 0.9 to **5.7** per period.
+
+#### Balancing Measures
+- **Time to feedback**: Did response time for residents get worse?
+- **Duplicate/Non-event submissions**: Did report quality decrease?
+- **Result**: No drop in quality, but feedback time was variable, identifying a new QI target.
+]
+
+.footnote[
+How-to Guide for Measurement, NHS England; Improving Pediatric Resident Safety Event Reporting, PubMed 2021
+]
+
+---
+
+# Run Charts and Statistical Process Control (SPC)
+
+.pull-left[
+#### Run Charts
+- **What**: Simple line graph with a **median** line.
+- **Use**: Early in a project, with limited data (≥8 points).
+- **Looks for**: Non-random signals of change (shifts, trends).
+- **Answers**: "Is something changing?"
+
+```{r run-chart-example, out.width = '70%', fig.asp = 0.6, dpi = 300}
+# REAL DATA from: Hagudu W, et al. Eliminating CLABSI in Pediatric Oncology Patients
+# Cureus. 2023. doi: 10.7759/cureus.34848
+# Quote: "Our baseline CLABSI rate in 2020 was 1.89 per 1000 central line days"
+# Quote: "In 2021, we recorded four primary CLABSI with 5710 central line days, 
+# resulting in a CLABSI rate of 0.7 per 1000 central line"
+# Monthly variation patterns are illustrative but maintain the real baseline and improvement
+
+spc_data <- data.frame(
+  Month = 1:24,
+  Infection_Rate = c(
+    # 2020 baseline period: Real baseline 1.89 per 1000 line days
+    c(2.1, 1.7, 1.9, 2.0, 1.8, 1.9, 1.8, 2.2, 1.6, 1.9, 1.8, 2.0),
+    # 2021-2022: Real improvement to 0.7 per 1000, with periods of zero
+    c(1.2, 0.8, 0.6, 0.9, 0.5, 0.7, 0.0, 0.0, 0.0, 0.0, 0.4, 0.0)
+  )
+)
+
+# Simple run chart - no statistical control limits
+ggplot(spc_data, aes(x = Month, y = Infection_Rate)) +
+  geom_line(size = 1, color = "darkblue") +
+  geom_point(size = 3, color = "darkblue") +
+  geom_vline(xintercept = 12.5, linetype = "dotted", alpha = 0.7, color = "gray50") +
+  labs(title = "Run Chart: Central Line-Associated Bloodstream Infections",
+       subtitle = "REAL baseline/outcome data; monthly patterns illustrative",
+       x = "Month",
+       y = "CLABSI Rate (per 1,000 line days)",
+       caption = "Real data: Hagudu et al. Cureus 2023") +
+  annotate("text", x = 6, y = 0.3, label = "Pre-intervention", size = 3, color = "gray50") +
+  annotate("text", x = 18, y = 0.3, label = "Post-intervention", size = 3, color = "gray50") +
+  theme_minimal(base_size = 14) +
+  theme(panel.grid.minor = element_blank())
+```
+]
+
+.pull-right[
+#### SPC Charts
+- **What**: More robust chart with statistically-derived **control limits**.
+- **Use**: Mature projects, more data.
+- **Looks for**: Special cause variation (points outside limits, specific patterns).
+- **Answers**: "Is the change a real improvement and is the process stable?"
+
+```{r spc-chart-example, out.width = '70%', fig.asp = 0.6, dpi = 300}
+# REAL DATA from: Hagudu W, et al. Eliminating CLABSI in Pediatric Oncology Patients
+# Cureus. 2023. doi: 10.7759/cureus.34848
+# Quote: "Our baseline CLABSI rate in 2020 was 1.89 per 1000 central line days"
+# Quote: "In 2021, we recorded four primary CLABSI with 5710 central line days, 
+# resulting in a CLABSI rate of 0.7 per 1000 central line"
+# Monthly variation patterns are illustrative but maintain the real baseline and improvement
+spc_data <- data.frame(
+  Month = 1:24,
+  Infection_Rate = c(
+    # 2020 baseline period: Real baseline 1.89 per 1000 line days
+    c(2.1, 1.7, 1.9, 2.0, 1.8, 1.9, 1.8, 2.2, 1.6, 1.9, 1.8, 2.0),
+    # 2021-2022: Real improvement to 0.7 per 1000, with periods of zero
+    c(1.2, 0.8, 0.6, 0.9, 0.5, 0.7, 0.0, 0.0, 0.0, 0.0, 0.4, 0.0)
+  )
+)
+
+# Control limits calculated from real baseline
+baseline_mean <- 1.89  # Real published baseline rate
+baseline_sd <- 0.17    # Estimated from baseline variation
+ucl <- baseline_mean + 3 * baseline_sd
+lcl <- max(0, baseline_mean - 3 * baseline_sd)
+
+ggplot(spc_data, aes(x = Month, y = Infection_Rate)) +
+  geom_line(size = 1, color = "darkblue") +
+  geom_point(size = 3, color = "darkblue") +
+  geom_hline(yintercept = baseline_mean, color = "darkgreen", size = 1) +
+  geom_hline(yintercept = ucl, color = "red", linetype = "dashed", size = 1) +
+  geom_hline(yintercept = lcl, color = "red", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = c(12.5), linetype = "dotted", alpha = 0.7) +
+  labs(title = "SPC Chart: Central Line-Associated Bloodstream Infections",
+       subtitle = "REAL baseline/outcome data; monthly patterns illustrative",
+       x = "Month",
+       y = "CLABSI Rate (per 1,000 line days)",
+       caption = "Real data: Hagudu et al. Cureus 2023") +
+  annotate("text", x = 12.5, y = ucl + 0.1, label = "Control Limits", size = 3, color = "red") +
+  annotate("text", x = 20, y = baseline_mean + 0.1, label = "Real Baseline: 1.89", size = 3, color = "darkgreen") +
+  theme_minimal(base_size = 14)
+```
+]
+
+.footnote[
+A Practical Guide to QI Data Analysis, Hospital Pediatrics 2024
+]
+
+---
+
+class: inverse, center, middle
+
+# Section 2: Patient Safety in Pediatric Practice
+## Pediatric Safety Challenges
+
+---
+
+# Medication Dosing Errors
+
+.pull-left[
+#### Physiological Factors
+- **Weight-based dosing** complexity
+- **Organ immaturity** (liver, kidneys)
+- **Continuous growth** changes parameters
+
+#### System Factors  
+- **Complex calculations** (mg/kg)
+- **Decimal point errors** (10-fold risk)
+- **Lack of pediatric formulations**
+
+
+#### Sobering Statistics
+- **1/3** of peds errors are "improper dose/quantity".
+- ADEs are **3x more frequent** in pediatric vs. adult patients.
+- **15%** of outpt scripts have dosing errors.
+]
+
+.pull-right[
+```{r medication-error-factors, out.width="100%"}
+# Google Search Prompt: "fishbone diagram medication error causes healthcare"
+knitr::include_graphics("figs/fishbone.png")
+```
+]
+
+.footnote[
+Methodological Challenges in Dosing Errors, NCBI; A Weighty Mistake, PSNet AHRQ
+]
+
+---
+
+# Case Study: A "Weighty" Mistake
+
+#### The Case
+- **Patient**: 17-month-old with periorbital cellulitis.
+- **Error**: Weight entered in EMR as **25 kg** instead of **25 lbs** (11.3 kg).
+- **Result**: Clindamycin dose was nearly **doubled**.
+
+--
+
+#### The Error Chain
+1. **Triage nurse** entered incorrect weight in EMR.
+2. **Resident** prescribed based on the wrong weight.
+3. **Attending** approved the order.
+4. **Pharmacist** dispensed the incorrect dose.
+5. **Nurse** administered the medication.
+6. **Four doses** were given before the **mother** (a medical student) caught the error.
+
+--
+
+#### Key Learning Points
+- **Multiple safety barriers failed**.
+- **Technology** (the EMR) propagated the initial error.
+- **Human verification** and critical thinking remain essential.
+
+.footnote[
+A Weighty Mistake, PSNet AHRQ
+]
+
+---
+
+# Communication Failures: High-Stakes Handoffs
+
+.pull-left[
+#### Patient & Family
+- Limited self-advocacy
+- Multiple caregivers
+- Language/cultural barriers
+
+#### System Factors
+- High patient volumes
+- Frequent handoffs
+- Fragmented care delivery
+- Multiple specialists
+]
+
+.pull-right[
+#### The Scope of the Problem
+- **30%** of malpractice claims involve communication failures.
+- Leads to **1,744 deaths** and **$1.7 billion** in costs over 5 years.
+
+#### Common Incidents from Poor Handoffs
+- Diagnostic or procedural errors
+- Delayed communication of critical results
+- Omission of essential information
+- Medication reconciliation failures
+]
+
+.footnote[
+Joint Commission Sentinel Event Alert 58; Safe handoff practices, Anales de Pediatría 2023
+]
+
+---
+
+```{r communication-challenges, align='center'}
+htmltools::tags$iframe(
+  src = "figs/pediatric_communication_network.html",
+  width = "70%", 
+  height = "600px",
+  frameborder = "0",
+  scrolling = "no",
+  style = "overflow: hidden; display: block; margin: 0 auto;"
+)
+```
+
+---
+
+# Diagnostic Errors: The Hidden Epidemic
+
+#### The Magnitude
+- **Most Americans** will experience ≥1 diagnostic error in their lifetime.
+- **32%** of pediatric malpractice claims involve diagnostic errors.
+- **54%** of pediatricians report making diagnostic errors ≥1-2x/month.
+- **77%** of trainees report this same frequency.
+
+--
+
+.pull-left[
+#### Common Errors from Pediatrician Surveys
+- Viral vs. bacterial illness
+- Medication side-effects
+- Psychiatric disorders
+- Appendicitis
+
+#### Common Errors from Malpractice Lit.
+- Meningitis
+- Appendicitis
+- Pneumonia
+- Testicular torsion
+]
+
+.pull-right[
+```{r diagnostic-error-frequency}
+# Google Search Prompt: "bar chart frequency of diagnostic errors by physicians"
+#knitr::include_graphics("figs/diagnostic-error-frequency.png")
+```
+]
+
+.footnote[
+Errors of Diagnosis in Pediatric Practice, PMC 2010; Core Elements of Hospital DxEx, CDC
+]
+
+---
+
+# Cognitive Biases in Diagnostic Errors
+
+```{r cognitive-biases-table}
+bias_data <- data.frame(
+  `Cognitive Bias` = c("Anchoring", "Premature Closure", "Availability", "Confirmation"),
+  Definition = c("Over-relying on initial info", "Accepting diagnosis too early", "Overestimating recent/common cases", "Seeking only confirming evidence"),
+  `Pediatric Example` = c("Sticking with 'seizures' despite cardiac clues", "Stopping workup after an initial impression", "Thinking 'viral URI' before considering Kawasaki", "Ignoring symptoms that don't fit the chosen diagnosis")
+)
+
+kable(bias_data, 
+      caption = "Common Cognitive Biases in Pediatric Diagnosis",
+      format = "html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+#### Top Contributing Factors Reported by Pediatricians
+1. **Overly focused** on a single diagnosis (Cognitive)
+2. **Misled by normal** lab/imaging results (Cognitive)
+3. **Inadequate information gathering** (Process)
+4. **Poor care coordination/teamwork** (System)
+
+.footnote[
+Errors of Diagnosis in Pediatric Practice, PMC 2010
+]
+
+---
+
+class: inverse, center, middle
+
+# Systems Thinking for Safety
+## Root Cause Analysis (RCA)
+
+---
+
+# Root Cause Analysis: Beyond Individual Blame
+
+#### Definition
+A **structured, systematic process** to discover the fundamental underlying causes of an adverse event to identify solutions that prevent recurrence.
+
+--
+
+#### Key Principles
+- Focus on **HOW and WHY** it happened, not **WHO** did it.
+- It is **system-oriented**, not person-oriented.
+- The goal is **prevention**, not punishment.
+
+--
+
+#### RCA for Diagnostic Errors
+- **Traditional RCA** often avoids analyzing clinical judgment.
+- **Diagnostic Error RCA** **MUST** include a deep dive into cognitive factors and biases.
+- **Crucial additions**: Clinicians involved are active team members; patient/family involvement is essential.
+
+.footnote[
+Root Cause Analysis Explained, Tableau; Root Cause Analysis of Diagnostic Cases, Leapfrog Group
+]
+
+---
+
+# RCA Step-by-Step Process
+
+#### 1. Immediate Response
+- Stabilize patient, Disclose to family, Inform leadership, Preserve artifacts.
+
+--
+
+#### 2. Case Analysis
+- Find the case, Confirm error occurred, Triage (RCA vs. peer review), Convene multidisciplinary team (including clinicians involved & family).
+
+--
+
+#### 3. Root Cause Investigation
+- Conduct interviews, Map the diagnostic process timeline, Use a **Fishbone diagram** to categorize factors.
+
+--
+
+#### 4. Action Planning
+- Develop interventions for both **system** and **cognitive** factors, Implement changes, Monitor effectiveness.
+
+.footnote[
+Root Cause Analysis of Diagnostic Cases, Leapfrog Group
+]
+
+---
+
+# The Fishbone Framework for Diagnostic Errors (1/2)
+
+### Four Key Domains to Investigate
+
+.pull-left[
+#### The Case
+- Disease presentation (atypical?)
+- Urgency and evolution
+- Rarity of condition
+
+#### The Patient  
+- Communication barriers
+- Adherence issues
+- Complex social factors
+]
+
+.pull-right[
+#### The Clinicians (Reasoning)
+- Knowledge gaps
+- Information gathering/synthesis
+- **Cognitive biases**
+
+#### The Context of Care
+- Access to care/expertise
+- EHR usability, Teamwork
+- Workload, distractions
+]
+
+.footnote[
+Root Cause Analysis of Diagnostic Cases, Leapfrog Group
+]
+
+---
+
+# The Fishbone Framework for Diagnostic Errors (2/2)
+
+```{r fishbone-diagram, out.width="70%"}
+# Google Search Prompt: "fishbone diagram diagnostic error template healthcare"
+knitr::include_graphics("figs/fishbone_diag.jpeg")
+```
+
+.footnote[
+Root Cause Analysis of Diagnostic Cases, Leapfrog Group
+]
+
+---
+
+class: inverse, center, middle
+
+# Systems Thinking for Safety
+## Failure Mode and Effects Analysis (FMEA)
+
+---
+
+# FMEA: Proactive Risk Assessment
+
+#### Definition
+A **proactive, systematic, team-based** methodology to identify potential failures in a process **before** they occur, and prioritize actions to prevent them.
+
+--
+
+#### Core FMEA Steps
+1. **Map** the process.
+2. **Brainstorm** potential "failure modes" (what could go wrong?).
+3. **Analyze** causes and effects of each failure.
+4. **Score** each failure to prioritize risk.
+5. **Develop** action plans to mitigate high-priority risks.
+
+--
+
+#### Risk Priority Number (RPN)
+- **RPN = Severity × Occurrence × Detectability**
+- A high score means the risk is severe, likely, and hard to detect.
+- This helps focus improvement efforts where they matter most.
+
+.footnote[
+Use of FMEA Methods in Pediatric Care, ResearchGate 2024
+]
+
+---
+
+# FMEA Success Stories in Pediatrics
+
+#### Smart Infusion Pumps in PICU
+- **Identified risks**: Programming errors, user unfamiliarity.
+- **Actions**: Created training profiles, user support docs, periodic reviews.
+- **Result**: Reduced risk and improved error detection.
+
+--
+
+#### Neonatal Parenteral Nutrition
+- **Identified risks**: Manual calculations, order form errors, contamination.
+- **Actions**: Implemented electronic calculations, standardized processes.
+- **Projected impact**: **67.5%** reduction in process risk.
+
+--
+
+#### Chemotherapy Administration
+- **Identified risks**: Prescribing and administration phases.
+- **Actions**: Implemented standard order sets, enhanced protocols.
+- **Result**: Decreased prescribing error rates and increased standardization.
+
+.footnote[
+Use of FMEA Methods in Pediatric Care, ResearchGate 2024
+]
+
+---
+
+# FMEA Impact: NICU CLABSI Reduction
+
+```{r clabsi-reduction, fig.height=3}
+# Data for CLABSI reduction
+clabsi_data <- data.frame(
+  Period = factor(c("Before FMEA", "After FMEA"), levels = c("Before FMEA", "After FMEA")),
+  Rate = c(2.6, 0.8)
+)
+
+ggplot(clabsi_data, aes(x = Period, y = Rate, fill = Period)) +
+  geom_bar(stat = "identity", width = 0.6) +
+  geom_text(aes(label = Rate), vjust = 1.5, size = 5) +
+  scale_fill_manual(values = c("Before FMEA" = "#D9D9E7", "After FMEA" = "#8585BC")) +
+  labs(title = "NICU CLABSI Rate Reduction After HFMEA Process",
+       subtitle = "A 69% decrease in CLABSIs per 1000 line days",
+       x = "",
+       y = "CLABSIs per 1000 Line Days") +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "none")
+```
+
+#### HFMEA Process
+- A multidisciplinary team identified 5 key failure modes, including contamination, improper documentation, and staff knowledge gaps.
+- Action plans included re-education, practice changes, and auditing.
+
+.footnote[
+Use of FMEA Methods in Pediatric Care, ResearchGate 2024
+]
+
+---
+
+class: inverse, center, middle
+
+# Safety Tools and Strategies
+## High-Reliability Organizations
+
+---
+
+# High-Reliability Organization Principles
+
+#### Definition and Five Principles
+Organizations operating in **high-risk, high-complexity** environments that achieve **far fewer accidents** than expected.
+
+--
+
+.pull-left[
+#### 1. Preoccupation with Failure
+- Treat near-misses as failures.
+- Constantly look for problems.
+
+#### 2. Reluctance to Simplify  
+- Dig for deeper, complex explanations.
+- Value diverse perspectives.
+
+#### 3. Sensitivity to Operations
+- Maintain real-time situational awareness.
+- Listen to frontline experts.
+]
+
+.pull-right[
+#### 4. Commitment to Resilience
+- Expect the unexpected.
+- Develop capacity to respond and adapt.
+
+#### 5. Deference to Expertise
+- Let the most knowledgeable person decide, regardless of rank.
+- Empower the frontline.
+]
+
+.footnote[
+High Reliability, Lurie Children's Hospital
+]
+
+---
+
+# HRO in Pediatric Hospitals
+
+#### Lurie Children's Hospital
+- Uses **safety coaches** to model HRO behaviors.
+- Recognizes staff for speaking up, asking questions, and effective communication.
+
+--
+
+#### Cincinnati Children's Hospital
+- Focuses on **designing reliable systems** and a **culture of reliability**.
+- Emphasizes **situational awareness** and managing by prediction.
+
+--
+
+#### Key Leadership Actions
+- Conduct daily rounds with frontline staff.
+- Lead daily **safety huddles**.
+- Provide frequent positive feedback (aim for 5:1 ratio).
+- Consistently model expected safety behaviors.
+
+.footnote[
+High Reliability, Lurie Children's; Becoming High Reliability, Cincinnati Children's
+]
+
+---
+
+# Just Culture vs. Blame Culture
+
+```{r just-culture-comparison}
+culture_data <- data.frame(
+  Aspect = c("Response to Error", "Focus", "Reporting", "Learning"),
+  `Blame Culture` = c("Punish individual", "Who is at fault?", "Discouraged by fear", "Limited / Missed"),
+  `Just Culture` = c("Analyze system factors", "How/why did it happen?", "Encouraged / Safe", "Maximized")
+)
+
+kable(culture_data, 
+      caption = "Blame Culture vs. Just Culture",
+      format = "html",
+      col.names = c("Aspect", "Blame Culture", "Just Culture")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+#### A Just Culture...
+- Balances system design and individual accountability.
+- Fosters psychological safety to report errors and near-misses.
+- Differentiates between **human error** (console), **at-risk behavior** (coach), and **reckless behavior** (discipline).
+- Views errors as opportunities to learn and improve the system.
+
+.footnote[
+From a Blame Culture to a Just Culture, ResearchGate; Patient Safety in Just Culture, WTW
+]
+
+---
+
+# Family Engagement in Safety (1/2)
+
+#### Definition
+An active **partnership** between health professionals and families to collaboratively improve health, safety, and care delivery.
+
+--
+
+#### Core Concepts
+- **Collaboration**: A true working relationship.
+- **Communication**: Effective, two-way information exchange.
+- **Respect & Dignity**: Valuing the family's expertise and worth.
+- **Information Sharing**: Providing complete, unbiased information.
+
+.footnote[
+Patient and Family Engagement Narrative Review, PMC 2016
+]
+
+---
+
+# Family Engagement in Safety (2/2)
+
+#### Definition
+An active **partnership** between health professionals and families to collaboratively improve health, safety, and care delivery.
+
+--
+
+#### Why It Matters
+- Families are crucial for managing chronic conditions and care transitions.
+- It is the foundation of patient-centered care and the medical home.
+- Families can co-create better policies and QI activities.
+
+--
+
+#### Strategies for Engagement
+- **Bedside handoffs** with family participation.
+- **Shared decision-making** tools and processes.
+- **Family advisory councils** to inform hospital policy.
+- **Education** to empower families as safety partners.
+
+.footnote[
+Patient and Family Engagement Narrative Review, PMC 2016
+]
+
+---
+
+class: inverse, center, middle
+
+# Thank You
+
+### Remember
+*"Every system is perfectly designed to get the results it gets."*  
+**- Dr. Paul Batalden**
