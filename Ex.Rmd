@@ -469,7 +469,7 @@ class: middle, center
 A. Two sample T-test  
 B. Analysis of variance  
 C. Pearson correlation  
-D. Chi-square test
+D. Chi-square test    
 E. Spearman correlation
 ]
 
